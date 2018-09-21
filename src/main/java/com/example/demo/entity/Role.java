@@ -1,18 +1,20 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 import com.example.demo.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "roles", catalog = "diplom_work", schema="DBO")
+@Table(name = "`Роль`", catalog = "diplom_work", schema="DBO")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Role;
 
+    @NotNull
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 

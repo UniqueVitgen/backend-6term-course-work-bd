@@ -1,8 +1,11 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name="Студент", catalog = "diplom_work", schema="DBO")
@@ -28,9 +31,14 @@ public class Student extends User  {
 //    @JoinColumn(name = "id_Specialization", insertable = false, updatable = false)
 //    private Specialization specialization;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @NotNull
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_Group")
     private Group group;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private DiplomWork diplomWork;
 
     public Student() {
 
@@ -42,6 +50,14 @@ public class Student extends User  {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public DiplomWork getDiplomWork() {
+        return diplomWork;
+    }
+
+    public void setDiplomWork(DiplomWork diplomWork) {
+        this.diplomWork = diplomWork;
     }
 
     //    public String getGroup() {

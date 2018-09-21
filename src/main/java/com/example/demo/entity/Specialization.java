@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -16,16 +17,21 @@ public class Specialization {
     @Column(name = "`id_Specialization`")
     private Integer idSpecialization;
 
+    @NotNull
     @Column(name = "`name`")
     private String name;
 
-    private String qualification;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "`id_Qualification`")
+    private Qualification qualification;
 
     @Column(name = "`code`")
     private String code;
 
     @ManyToOne
-    @JoinColumn(name = "`id_faculty`")
+    @JoinColumn(name = "`id_Faculty`")
     private Faculty faculty;
 
     @JsonIgnore
@@ -60,11 +66,11 @@ public class Specialization {
         this.name = name;
     }
 
-    public String getQualification() {
+    public Qualification getQualification() {
         return qualification;
     }
 
-    public void setQualification(String qualification) {
+    public void setQualification(Qualification qualification) {
         this.qualification = qualification;
     }
 

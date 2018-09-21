@@ -26,4 +26,24 @@ public class TitleServiceImpl implements TitleService {
     public Title findById(Integer id) {
         return titleRepository.findById(id).get();
     }
+
+    @Override
+    public Title save(Title title) {
+        return titleRepository.save(title);
+    }
+
+    @Override
+    public Title edit(Title title) {
+        return titleRepository.save(title);
+    }
+
+    @Override
+    public void delete(Title title) {
+        titleRepository.delete(title);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        titleRepository.deleteById(id);
+    }
 }

@@ -5,28 +5,32 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.deploy.panel.SpecialTreeListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
 @Table(name = "Группа", catalog = "diplom_work", schema="DBO")
 public class Group {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Group`")
     private Integer idGroup;
 
+    @NotNull
     private String number;
 
-    private int amount_student;
+    @NotNull
+    @Column(name = "`amount_student`")
+    private int amountStudent;
 
-
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_Specialization")
     private Specialization specialization;
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.MERGE)
     private Set<Student> students;
 
     public Group(String number) {
@@ -54,11 +58,11 @@ public class Group {
     }
 
     public int getAmount_student() {
-        return amount_student;
+        return amountStudent;
     }
 
     public void setAmount_student(int amount_student) {
-        this.amount_student = amount_student;
+        this.amountStudent = amount_student;
     }
 
     public Specialization getSpecialization() {

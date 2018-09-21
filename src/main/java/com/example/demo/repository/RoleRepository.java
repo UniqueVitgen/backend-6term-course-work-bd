@@ -12,4 +12,6 @@ public interface RoleRepository extends CrudRepository<Role, Integer> {
 
     @Override
     Optional<Role> findById(Integer integer);
+
+    Optional<Role> findByName(String name);
 }

@@ -11,4 +11,12 @@ public interface TitleService {
     List<Title> findAll();
 
     Title findById(Integer id);
+
+    Title save(Title title);
+
+    Title edit(Title title);
+
+    void delete(Title title);
+
+    void delete(Integer id);
 }

@@ -26,4 +26,24 @@ public class DegreeServiceImpl implements DegreeService {
     public Degree findById(Integer id) {
         return degreeRepository.findById(id).get();
     }
+
+    @Override
+    public Degree save(Degree degree) {
+        return degreeRepository.save(degree);
+    }
+
+    @Override
+    public Degree edit(Degree degree) {
+        return degreeRepository.save(degree);
+    }
+
+    @Override
+    public void delete(Degree degree) {
+        degreeRepository.delete(degree);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        degreeRepository.deleteById(id);
+    }
 }

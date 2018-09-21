@@ -3,17 +3,18 @@ package com.example.demo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "ученая_степень", catalog = "diplom_work", schema="DBO")
+@Table(name = "Ученая_степень", catalog = "diplom_work", schema="DBO")
 public class Degree {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Degree")
-    private Integer idDegree;
+    private Integer id;
 
+    @NotNull
     private String name;
 
 
@@ -26,12 +27,12 @@ public class Degree {
 
     }
 
-    public Integer getIdDegree() {
-        return idDegree;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdDegree(Integer idDegree) {
-        this.idDegree = idDegree;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

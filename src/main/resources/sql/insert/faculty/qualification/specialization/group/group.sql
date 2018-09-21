@@ -1,0 +1,2 @@
+insert into diplom_work.dbo.Группа (number, amount_student, id_Specialization) VALUES ('10701115', 0, 1);
+insert into diplom_work.dbo.Группа (number, amount_student, id_Specialization) VALUES ('10701215', 0, 1);

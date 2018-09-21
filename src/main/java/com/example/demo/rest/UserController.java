@@ -34,6 +34,13 @@ public class UserController {
         return userService.findByUsername(username);
     }
 
+    @CrossOrigin(origins = {"http://localhost:4200"})
+    @RequestMapping(value = "/user-{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    User getById(@PathVariable("id") Integer id) {
+        return userService.findOne(id);
+    }
+
 
 
 
