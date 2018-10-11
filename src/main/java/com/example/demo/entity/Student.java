@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name="Студент", catalog = "diplom_work", schema="DBO")
+@Table(name="`student`")
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(name = "create_student",
                 procedureName = "dbo.create_student",

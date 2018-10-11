@@ -52,7 +52,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/token/*", "/sign-up/*", "/roles/*", "/faculty/*", "/specialization/**","/users/*",
                         "/group/**", "/title/**", "/degree/**", "/post/**").permitAll()
-                .antMatchers("/lectors/*", "/news/**", "/diplom-work/**", "/percentage/**").hasAnyAuthority("LECTOR", "STUDENT", "ADMIN")
+                .antMatchers("/lectors/*", "/news/**", "/diplom-work/**",
+                        "/percentage/**", "/status/**").hasAnyAuthority("LECTOR",
+                "STUDENT", "ADMIN", "ORGANIZER", "SECRETARY_SEC")
+                .antMatchers("/sec/**", "/sec-event/**").hasAnyAuthority("SECRETARY_SEC", "ADMIN")
 //                .antMatchers(  ).hasRole("LECTOR")
 //                .antMatchers("/users/*").hasAuthority("STUDENT")
                 .antMatchers("/**").hasAuthority("ADMIN")

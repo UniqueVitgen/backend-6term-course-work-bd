@@ -9,11 +9,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name = "Специальность", catalog = "diplom_work", schema="DBO")
+@Table(name = "`specialization`")
 public class Specialization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Specialization`")
     private Integer idSpecialization;
 

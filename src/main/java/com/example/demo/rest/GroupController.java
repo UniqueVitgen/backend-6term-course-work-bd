@@ -1,11 +1,14 @@
 package com.example.demo.rest;
 
 import com.example.demo.entity.Group;
+import com.example.demo.entity.sec.SEC;
+import com.example.demo.repository.sec.SECRepository;
 import com.example.demo.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -63,5 +66,17 @@ public class GroupController {
         catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @RequestMapping(value="/find-all-by-sec", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Group> findBySecs(@RequestParam("secIds") List<Integer> secIds) {
+        return groupService.findAllBySecIdList(secIds);
+    }
+
+    @RequestMapping(value="/find-all-by-sec-or-null", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Group> findBySecsOrNull(@RequestParam("secIds") List<Integer> secIds) {
+        return groupService.findAllBySecIdListOrNull(secIds);
     }
 }

@@ -1,1 +1,1 @@
-insert into diplom_work.dbo.Пользователь (firstname, lastname, middlename, 'password', username) VALUES ('Виталий','Орсик','Геннадьевич', '$2a$10$CetIH1OKzWe79W9TPeEWwuz8LV9T1pD05.gzgqEwvEPB6wg2mzq3.', 'admin1997')
+insert into diplom_work.user (firstname, lastname, middlename, `password`, username) VALUES ('Виталий','Орсик','Геннадьевич', '$2a$10$CetIH1OKzWe79W9TPeEWwuz8LV9T1pD05.gzgqEwvEPB6wg2mzq3.', 'admin1997')

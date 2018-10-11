@@ -5,6 +5,7 @@ import com.example.demo.entity.Lector;
 import com.example.demo.entity.Status;
 import com.example.demo.entity.Student;
 import com.example.demo.repository.DiplomWorkRepository;
+import com.example.demo.service.files.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,7 @@ public class DiplomWorkServiceImpl implements DiplomWorkService{
 
     @Override
     public DiplomWork edit(DiplomWork diplomWork) {
+//        diplomWorkRepository.flush()
         return diplomWorkRepository.save(diplomWork);
     }
 

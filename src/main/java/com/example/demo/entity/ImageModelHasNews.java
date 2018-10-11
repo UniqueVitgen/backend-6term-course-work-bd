@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="`Изображение_с_новостью`", catalog = "diplom_work", schema="DBO")
+@Table(name="`image_has_news`")
 public class ImageModelHasNews extends ImageModel {
 
     @JsonIgnore

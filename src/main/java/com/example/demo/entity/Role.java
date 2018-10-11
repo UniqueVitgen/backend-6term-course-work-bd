@@ -7,11 +7,10 @@ import com.example.demo.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "`Роль`", catalog = "diplom_work", schema="DBO")
+@Table(name = "`role`")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Role;
 
     @NotNull

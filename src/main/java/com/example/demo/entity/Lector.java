@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name = "Преподователь", catalog = "diplom_work", schema="DBO")
+@Table(name = "`lector`")
 public class Lector extends User {
 
 

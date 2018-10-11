@@ -7,10 +7,9 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name="`Дипломная_работа`", catalog = "diplom_work", schema="DBO")
+@Table(name="`diplom_work`")
 public class DiplomWork {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Diplom_work`")
     private Integer id;
 
@@ -57,7 +56,7 @@ public class DiplomWork {
     private Set<Percentage> percentages;
 
     @NotNull
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "`id_Status`")
     private Status status;
 

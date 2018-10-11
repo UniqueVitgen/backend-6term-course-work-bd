@@ -16,7 +16,7 @@ public interface SpecializationRepository extends CrudRepository<Specialization,
 //    @Query("select * from Specialization as sp where sp.id_faculty = :id")
 //    List<Specialization> findSpecializationByFaculty()
 
-    @Query(value = "select * from  diplom_work.dbo.специальность as sp where sp.id_faculty = :id", nativeQuery = true)
+    @Query(value = "select * from  diplom_work.specialization as sp where sp.id_faculty = :id", nativeQuery = true)
     List<Specialization> findSpecializationByFacultyId(@Param("id") Integer id);
 
     List<Specialization> findAllByFaculty(Faculty faculty);

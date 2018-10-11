@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "Пользователь", catalog = "diplom_work", schema="DBO")
+@Table(name = "`user`")
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(name = "in_only_test",
                 procedureName = "test_pkg.in_only_test",
@@ -22,7 +22,6 @@ import java.util.Set;
 })
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="`id_Person`")
     private Integer idPerson;
 
@@ -47,7 +46,7 @@ public class User {
     protected String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "`Пользователи_Роли`", catalog = "diplom_work", schema="DBO", joinColumns = @JoinColumn(name = "id_User"),
+    @JoinTable(name = "`users_roles`", catalog = "diplom_work", schema="DBO", joinColumns = @JoinColumn(name = "id_User"),
             inverseJoinColumns = @JoinColumn(name = "id_Role"))
     private Set<Role> roles;
 

@@ -20,4 +20,8 @@ public interface UserService<T,IRepository> {
     public Lector saveLector(Lector lector);
 
     public Student saveStudent(Student student);
+
+    public User saveOrganizer(User organizer);
+
+    public User saveSecretary(User secretary);
 }

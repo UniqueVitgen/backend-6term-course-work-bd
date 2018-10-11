@@ -5,11 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name="`Новость`", catalog = "diplom_work", schema="DBO")
+@Table(name="`news`")
 public class News {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="`id_News`")
     private Integer id;
 

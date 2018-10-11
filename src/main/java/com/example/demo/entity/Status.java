@@ -8,11 +8,10 @@ import java.util.Date;
 
 
 @Entity
-@Table(name="`Статус`", catalog = "diplom_work", schema="DBO")
+@Table(name="`status`")
 public class Status {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="`id_Status`")
     private Integer id;
 

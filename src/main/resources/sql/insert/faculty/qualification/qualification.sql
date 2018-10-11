@@ -1,1 +1,1 @@
-insert into diplom_work.dbo.Квалификация (name) VALUES ('Инженер-программист')
+insert into diplom_work.qualification (name) VALUES ('Инженер-программист')

@@ -35,6 +35,26 @@ public class RegisterController {
         return userService.saveStudent(student);
     }
 
+    @RequestMapping(value = "/organizer", method = RequestMethod.POST)
+    User SignUpOrganizer(@RequestBody User organizer) {
+        System.out.println("entered in stuedent sign up");
+        User user = userService.findByUsername(organizer.getUsername());
+        if(user != null) {
+            return null;
+        }
+        return userService.saveOrganizer(organizer);
+    }
+
+    @RequestMapping(value = "/secretary-sec", method = RequestMethod.POST)
+    User SignUpSecretary(@RequestBody User secretary) {
+        System.out.println("entered in stuedent sign up");
+        User user = userService.findByUsername(secretary.getUsername());
+        if(user != null) {
+            return null;
+        }
+        return userService.saveSecretary(secretary);
+    }
+
     public <T> List<T> jsonArrayToObjectList(String json, Class<T> tClass) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CollectionType listType = mapper.getTypeFactory().constructCollectionType(ArrayList.class, tClass);

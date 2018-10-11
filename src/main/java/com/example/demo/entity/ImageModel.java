@@ -8,11 +8,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="`Изображение`", catalog = "diplom_work", schema="DBO")
+@Table(name="`iamge`")
 public class ImageModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="`id_Image`")
     private Integer id;
 

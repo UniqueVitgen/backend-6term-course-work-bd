@@ -115,6 +115,26 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
         return (Student) createdStudent;
     }
 
+    @Override
+    public User saveOrganizer(User organizer) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleService.findByName("ORGANIZER"));
+        organizer.setRoles(roles);
+        organizer.setPassword(bcryptEncoder.encode(organizer.getPassword()));
+        userRepository.save(organizer);
+        return organizer;
+    }
+
+    @Override
+    public User saveSecretary(User secretary) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleService.findByName("SECRETARY_SEC"));
+        secretary.setRoles(roles);
+        secretary.setPassword(bcryptEncoder.encode(secretary.getPassword()));
+        userRepository.save(secretary);
+        return secretary;
+    }
+
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(userId);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

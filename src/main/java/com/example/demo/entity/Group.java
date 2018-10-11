@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.sec.SEC;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.deploy.panel.SpecialTreeListener;
@@ -9,10 +11,9 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name = "Группа", catalog = "diplom_work", schema="DBO")
+@Table(name = "`group`")
 public class Group {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Group`")
     private Integer idGroup;
 
@@ -22,6 +23,12 @@ public class Group {
     @NotNull
     @Column(name = "`amount_student`")
     private int amountStudent;
+
+
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_sec")
+    private SEC sec;
 
     @NotNull
     @ManyToOne
@@ -79,5 +86,21 @@ public class Group {
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public int getAmountStudent() {
+        return amountStudent;
+    }
+
+    public void setAmountStudent(int amountStudent) {
+        this.amountStudent = amountStudent;
+    }
+
+    public SEC getSec() {
+        return sec;
+    }
+
+    public void setSec(SEC sec) {
+        this.sec = sec;
     }
 }

@@ -1,1 +1,1 @@
-insert into diplom_work.dbo.Пользователи_Роли (id_User, id_Role) VALUES (1, 1);
+insert into diplom_work.users_roles (id_User, id_Role) VALUES (1, 1);

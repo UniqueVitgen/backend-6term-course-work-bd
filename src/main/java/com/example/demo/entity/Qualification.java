@@ -7,11 +7,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name = "Квалификация", catalog = "diplom_work", schema="DBO")
+@Table(name = "`qualification`")
 public class Qualification {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Qualification`")
     private Integer id;
 

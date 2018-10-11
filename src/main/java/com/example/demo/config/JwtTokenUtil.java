@@ -53,6 +53,8 @@ public class JwtTokenUtil implements Serializable {
         Claims claims = Jwts.claims().setSubject(subject);
         claims.put("scopes", Arrays.asList(new SimpleGrantedAuthority("LECTOR")));
         claims.put("scopes", Arrays.asList(new SimpleGrantedAuthority("STUDENT")));
+        claims.put("scopes", Arrays.asList(new SimpleGrantedAuthority("ORGANIZER")));
+        claims.put("scopes", Arrays.asList(new SimpleGrantedAuthority("SECRETARY_SEC")));
 
         return Jwts.builder()
                 .setClaims(claims)
