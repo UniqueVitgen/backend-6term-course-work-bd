@@ -49,9 +49,21 @@ public class NewsServiceImpl implements NewsService {
             news.setImageModel(imageModelHasNews);
         }
         //imageModelHasNews = imageHasNewsRepository.save(imageModelHasNews);
+        news.setId(newsForm.getId());
         news.setTitle(newsForm.getTitle());
         news.setContent(newsForm.getContent());
         news.setCreated(new Date());
+        news.setUser(newsForm.getUser());
         return newsRepository.save(news);
+    }
+
+    @Override
+    public void delete(News news) {
+        newsRepository.delete(news);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        newsRepository.deleteById(id);
     }
 }

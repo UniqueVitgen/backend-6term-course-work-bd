@@ -24,4 +24,6 @@ public interface GroupRepository extends CrudRepository<Group, Integer> {
     @Query("SELECT l1 FROM Group l1 WHERE l1.sec.id IN :ids or l1.sec.id is null")
     List<Group> findAllBySecInOrNull(@Param("ids") List<Integer> ids);
 
+    List<Group> findAllBySecIsNull();
+
 }

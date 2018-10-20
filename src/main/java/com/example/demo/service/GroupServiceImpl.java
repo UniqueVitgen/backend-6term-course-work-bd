@@ -52,6 +52,11 @@ public class GroupServiceImpl implements GroupService  {
     }
 
     @Override
+    public List<Group> findAllBySecIsNull() {
+        return groupRepository.findAllBySecIsNull();
+    }
+
+    @Override
     public List<Group> findAll() {
         return groupRepository.findAll();
     }

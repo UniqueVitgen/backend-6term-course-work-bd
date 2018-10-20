@@ -14,4 +14,8 @@ public interface NewsService {
     News save(News news);
 
     News save(NewsForm newsForm);
+
+    void delete(News news);
+
+    void delete(Integer id);
 }

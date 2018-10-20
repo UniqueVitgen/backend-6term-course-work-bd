@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/status")
@@ -16,14 +18,14 @@ public class StatusContoller {
     private StatusService statusService;
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAll", method = GET)
     public @ResponseBody
     List<Status> statusesList() {
         return statusService.getAll();
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/status-{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/status-{id}", method = GET)
     public @ResponseBody
     Status status(@PathVariable("id") Integer id) {
         return statusService.get(id);
@@ -31,21 +33,21 @@ public class StatusContoller {
 
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = POST)
     public @ResponseBody
     Status save(@RequestBody Status status) {
         return statusService.save(status);
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
+    @RequestMapping(value = "/edit", method = PUT)
     public @ResponseBody
     Status edit(@RequestBody Status status) {
         return statusService.edit(status);
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/delete-{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete-{id}", method = DELETE)
     public ResponseEntity delete(@PathVariable("id") Integer id) {
 
         try {

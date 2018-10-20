@@ -1,13 +1,14 @@
 package com.example.demo.rest;
 
 import com.example.demo.entity.Specialization;
-import com.example.demo.entity.User;
 import com.example.demo.service.SpecializationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -18,7 +19,7 @@ public class SpecializationController {
     private SpecializationService specializationService;
 
 
-    @RequestMapping(value = "/get-by-specialization/{id-faculty}", method = RequestMethod.GET, consumes = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/get-by-specialization/{id-faculty}", method = GET, consumes = "application/json; charset=UTF-8")
     public @ResponseBody
     List<Specialization> getSpecializationByFaculty(@PathVariable("id-faculty") Integer id) {
         List<Specialization> users = specializationService.findAllByFaculty(id);
@@ -28,7 +29,7 @@ public class SpecializationController {
 
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAll", method = GET)
     public @ResponseBody
     List<Specialization> specializationsList() {
         List<Specialization> specializations = specializationService.findAll();
@@ -36,7 +37,7 @@ public class SpecializationController {
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/specialization-{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/specialization-{id}", method = GET)
     public @ResponseBody
     Specialization specialization(@PathVariable("id") Integer id) {
         return specializationService.get(id);
@@ -44,21 +45,21 @@ public class SpecializationController {
 
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/save", method = RequestMethod.POST,  produces = "application/json")
+    @RequestMapping(value = "/save", method = POST,  produces = "application/json")
     public @ResponseBody
     Specialization save(@RequestBody Specialization specialization) {
         return specializationService.save(specialization);
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
+    @RequestMapping(value = "/edit", method = PUT)
     public @ResponseBody
     Specialization edit(@RequestBody Specialization specialization) {
         return specializationService.Edit(specialization);
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/delete-{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete-{id}", method = DELETE)
     public ResponseEntity delete(@PathVariable("id") Integer id) {
 
         try {

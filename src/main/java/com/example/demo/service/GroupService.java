@@ -17,6 +17,8 @@ public interface GroupService {
 
     List<Group> findAllBySecIdListOrNull(List<Integer> secIdList);
 
+    List<Group> findAllBySecIsNull();
+
     List<Group> findAll();
 
     Group save(Group group);

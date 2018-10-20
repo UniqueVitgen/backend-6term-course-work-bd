@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -49,6 +51,10 @@ public class User {
     @JoinTable(name = "`users_roles`", catalog = "diplom_work", schema="DBO", joinColumns = @JoinColumn(name = "id_User"),
             inverseJoinColumns = @JoinColumn(name = "id_Role"))
     private Set<Role> roles;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<News> news;
 
     public Set<Role> getRoles() {
         return roles;

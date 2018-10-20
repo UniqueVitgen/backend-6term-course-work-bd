@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/users")
@@ -20,7 +22,7 @@ public class UserController {
     public LectorService lectorService;
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET, consumes = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/getAll", method = GET, consumes = "application/json; charset=UTF-8")
     public @ResponseBody
     List<User> lectorsList() {
         List<User> users = userService.findAll();
@@ -28,14 +30,14 @@ public class UserController {
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/user-username/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user-username/{username}", method = GET)
     public @ResponseBody
     User getByUsername(@PathVariable("username") String username) {
         return userService.findByUsername(username);
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/user-{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user-{id}", method = GET)
     public @ResponseBody
     User getById(@PathVariable("id") Integer id) {
         return userService.findOne(id);

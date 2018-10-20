@@ -9,6 +9,7 @@ import java.util.Date;
 public class News {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="`id_News`")
     private Integer id;
 
@@ -31,6 +32,10 @@ public class News {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "`id_image`")
     private ImageModelHasNews imageModel;
+
+    @ManyToOne
+    @JoinColumn(name = "`id_user`")
+    private User user;
 
     public void setId(Integer id) {
         this.id = id;
@@ -66,5 +71,13 @@ public class News {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

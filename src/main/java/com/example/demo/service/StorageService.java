@@ -20,11 +20,13 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import static java.nio.file.Paths.*;
+
 @Service
 public class StorageService {
 
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
-    private final Path rootLocation = Paths.get("D:\\6term\\web\\diplom\\diplom-work\\imgstor");
+    private final Path rootLocation = get("./src/main/resources/images");
 
     public void store(MultipartFile file) {
         try {

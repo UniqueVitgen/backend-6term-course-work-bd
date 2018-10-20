@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/title")
@@ -17,31 +19,31 @@ public class TitleController {
     @Autowired
     private TitleService titleService;
 
-    @RequestMapping(value = "/get-by-name/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-name/{name}", method = GET)
     public @ResponseBody
     Title findByName(@PathVariable("name") String name) {
         return titleService.findByName(name);
     }
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAll", method = GET)
     public @ResponseBody
     List<Title> findAll() {
         return titleService.findAll();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = POST)
     public @ResponseBody
     Title save(@RequestBody Title title) {
         return titleService.save(title);
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
+    @RequestMapping(value = "/edit", method = PUT)
     public @ResponseBody
     Title edit(@RequestBody Title title) {
         return titleService.edit(title);
     }
 
-    @RequestMapping(value = "/delete-{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete-{id}", method = DELETE)
     ResponseEntity delete(@PathVariable("id") Integer id) {
         try {
             titleService.delete(id);

@@ -28,6 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.hibernate.Hibernate;
 
+import static org.springframework.http.HttpHeaders.*;
+
 @CrossOrigin(origins = {"http://localhost:4200"})
 @Controller
 public class UploadController {
@@ -93,7 +95,7 @@ public class UploadController {
     public ResponseEntity<Resource> getFile(@PathVariable String filename) {
         Resource file = storageService.loadFile(filename);
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                .header(CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                 .body(file);
     }
 }

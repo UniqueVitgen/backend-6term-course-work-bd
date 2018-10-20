@@ -20,6 +20,7 @@ import java.util.List;
 @Service
 public class WordServiceImpl implements WordService {
     final String[] columns = {"Название", "Комментарий", "Дата начала", "Дата окончания", "Процент"};
+    static String path = "src/main/resources";
     static SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-mm-dd");
     @Override
     public File writeDiplomWork(DiplomWork diplomWork) {
@@ -95,7 +96,7 @@ public class WordServiceImpl implements WordService {
 //            mainDocumentPart.addObject(tbl);
                 mainDocumentPart.getContent().add(tbl);
             }
-            String pathname = "Диплом работа: " + diplomWork.getName() + ".docx";
+            String pathname = WordServiceImpl.path + "Диплом работа: " + diplomWork.getName() + ".docx";
             File exportFile = new File(pathname);
 
             wordPackage.save(exportFile);

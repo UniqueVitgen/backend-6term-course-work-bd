@@ -30,27 +30,27 @@ public class SECServiceImpl implements SECService {
     @Override
     public SEC save(SEC sec) {
         sec = updateGroups(sec);
-        SECStaff secStaff = new SECStaff();
-        sec.setSecStaff(secStaff);
         return sec;
     }
 
     private SEC updateGroups(SEC sec) {
-        List<Group> previousGroups = groupRepository.findAllBySec(sec);
+        if(sec.getId() != null) {
+            List<Group> previousGroups = groupRepository.findAllBySec(sec);
 
-        for(Group group: previousGroups) {
-            group.setSec(null);
-            groupRepository.save(group);
+            for (Group group : previousGroups) {
+                group.setSec(null);
+                groupRepository.save(group);
 //            groupRepository.save(group);
+            }
         }
-        List<Group> groups = sec.getGroups();
-        sec.setGroups(new ArrayList<>());
-        sec = secRepository.save(sec);
-        for(Group group: groups) {
-            group.setSec(sec);
+            List<Group> groups = sec.getGroups();
+            sec.setGroups(new ArrayList<>());
+            sec = secRepository.save(sec);
+            for(Group group: groups) {
+                group.setSec(sec);
 //            groupRepository.save(group);
-        }
-        sec.setGroups(groups);
+            }
+            sec.setGroups(groups);
         return secRepository.save(sec);
     }
 

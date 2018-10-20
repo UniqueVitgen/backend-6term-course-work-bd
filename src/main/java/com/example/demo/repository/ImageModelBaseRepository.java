@@ -17,7 +17,7 @@ public interface ImageModelBaseRepository<T extends ImageModel> extends JpaRepos
 
     List<ImageModel> findAllByFilename(String filename);
 
-    @Query(value = "select distinct im.filename from diplom_work.dbo.[Изображение] as im", nativeQuery = true)
+    @Query(value = "select distinct im.filename from image as im", nativeQuery = true)
     List<String> findDistinctFilenames();
 
     List<ImageModel> findAll();

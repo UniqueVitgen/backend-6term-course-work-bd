@@ -11,13 +11,17 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 
+import static com.itextpdf.text.Element.*;
+
 @Service
 public class PDFServiceImpl implements PDFService {
+    static String path = "src/main/resources";
+
     @Override
     public File writeDiplomWork(DiplomWork diplomWork) {
         try {
             Document document = new Document();
-            String pathname = "Диплом работа: " + diplomWork.getName() + ".pdf";
+            String pathname = PDFServiceImpl.path + "Диплом работа: " + diplomWork.getName() + ".pdf";
             PdfWriter.getInstance(document,  new FileOutputStream(pathname));
 
             document.open();
@@ -46,7 +50,7 @@ public class PDFServiceImpl implements PDFService {
                 Paragraph paragraph = new Paragraph();
                 Chunk forTable1 = new Chunk("Таблица процентовок", fontRu);
                 paragraph.add(forTable1);
-                paragraph.setAlignment(Element.ALIGN_CENTER);
+                paragraph.setAlignment(ALIGN_CENTER);
                 addEmptyLine(paragraph,1);
 
                 document.add(paragraph);
@@ -60,15 +64,15 @@ public class PDFServiceImpl implements PDFService {
 
                 PdfPCell hcell;
                 hcell = new PdfPCell(new Phrase("Название", fontRuTitle));
-                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                hcell.setHorizontalAlignment(ALIGN_CENTER);
                 table.addCell(hcell);
 
                 hcell = new PdfPCell(new Phrase("Комментарий", fontRuTitle));
-                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                hcell.setHorizontalAlignment(ALIGN_CENTER);
                 table.addCell(hcell);
 
                 hcell = new PdfPCell(new Phrase("Процент", fontRuTitle));
-                hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                hcell.setHorizontalAlignment(ALIGN_CENTER);
                 table.addCell(hcell);
 
                 for(Percentage percentage: diplomWork.getPercentages()) {
@@ -77,19 +81,19 @@ public class PDFServiceImpl implements PDFService {
                     PdfPCell cell;
 
                     cell = new PdfPCell(new Phrase(percentage.getName().toString(), fontRu));
-                    cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setVerticalAlignment(ALIGN_MIDDLE);
+                    cell.setHorizontalAlignment(ALIGN_CENTER);
                     table.addCell(cell);
 
                     cell = new PdfPCell(new Phrase(percentage.getComment(), fontRu));
                     cell.setPaddingLeft(5);
-                    cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setVerticalAlignment(ALIGN_MIDDLE);
+                    cell.setHorizontalAlignment(ALIGN_CENTER);
                     table.addCell(cell);
 
                     cell = new PdfPCell(new Phrase(String.valueOf(percentage.getPercent()), fontRu));
-                    cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setVerticalAlignment(ALIGN_MIDDLE);
+                    cell.setHorizontalAlignment(ALIGN_CENTER);
                     cell.setPaddingRight(5);
                     table.addCell(cell);
                 }

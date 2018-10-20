@@ -25,17 +25,19 @@ public class SEC {
     @OneToMany(mappedBy = "sec", cascade = CascadeType.ALL)
     private Set<SECEvent> events;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "`sec_users_secs`", joinColumns = @JoinColumn(name = "id_sec"),
+            inverseJoinColumns = @JoinColumn(name = "id_sec_user"))
+    private Set<SECUser> users;
+
     @NotNull
     @Column(name="`start_date`")
     private Date startDate;
 
+
     @NotNull
     @Column(name="`end_date`")
     private Date endDate;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "`id_sec_staff`")
-    private SECStaff secStaff;
 
     public Integer getId() {
         return id;
@@ -77,11 +79,11 @@ public class SEC {
         this.events = events;
     }
 
-    public SECStaff getSecStaff() {
-        return secStaff;
+    public Set<SECUser> getUsers() {
+        return users;
     }
 
-    public void setSecStaff(SECStaff secStaff) {
-        this.secStaff = secStaff;
+    public void setUsers(Set<SECUser> users) {
+        this.users = users;
     }
 }

@@ -79,4 +79,10 @@ public class GroupController {
     List<Group> findBySecsOrNull(@RequestParam("secIds") List<Integer> secIds) {
         return groupService.findAllBySecIdListOrNull(secIds);
     }
+
+    @RequestMapping(value="/find-all-by-where-sec-is-null", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Group> findBySecIsNull() {
+        return groupService.findAllBySecIsNull();
+    }
 }

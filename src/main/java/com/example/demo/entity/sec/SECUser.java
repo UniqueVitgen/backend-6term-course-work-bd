@@ -1,7 +1,10 @@
 package com.example.demo.entity.sec;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +19,11 @@ public class SECUser {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "`sec_users_roles`",  joinColumns = @JoinColumn(name = "id_sec_user"),
             inverseJoinColumns = @JoinColumn(name = "id_sec_role"))
-    private Set<SECRole> roles;
+    private Set<SECRole> roles = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "users",fetch = FetchType.EAGER)
+    private Set<SEC> secs;
 
     @NotNull
     @Column(nullable=false)
@@ -68,5 +75,13 @@ public class SECUser {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Set<SEC> getSecs() {
+        return secs;
+    }
+
+    public void setSecs(Set<SEC> secs) {
+        this.secs = secs;
     }
 }
