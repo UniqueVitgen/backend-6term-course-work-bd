@@ -3,17 +3,18 @@ package com.example.demo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "должность", catalog = "diplom_work", schema="DBO")
+@Table(name = "Должность", catalog = "diplom_work", schema="DBO")
 public class Post {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Post")
     private Integer idPost;
 
+    @NotNull
     private String name;
 
     @JsonIgnore

@@ -69,7 +69,8 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     public Lector saveLector(Lector lector) {
         User newUser = new User();
         Set<Role> roles = new HashSet<>();
-        roles.add(roleService.findOne(2));
+        roles.add(roleService.findByName("LECTOR"));
+        //roles.add(roleService.findByName("LECTURE"));
         newUser.setRoles(roles);
         newUser.setUsername(lector.getUsername());
         newUser.setFirstname(lector.getFirstname());
@@ -80,10 +81,7 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
 
 
         Lector newLector = new Lector();
-        //Set<Role> roles = new HashSet<>();
-        //roles.add(roleService.findOne(2));
         newLector.setRoles(newUser.getRoles());
-        //newLector.setId_Person(newUser.getId_Person());
         newLector.setUsername(newUser.getUsername());
         newLector.setFirstname(newUser.getFirstname());
         newLector.setMiddlename(newUser.getMiddlename());
@@ -91,11 +89,9 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
         newLector.setPassword(newUser.getPassword());
 
         newLector.setTitle(lector.getTitle());
-        //Integer idPerson = lectorRepository.createLector(newLector.getLastname(), newLector.getFirstname(),newLector.getMiddlename(),newLector.getUsername(),newLector.getPassword(), newLector.getTitle(), newLector.getDegree(), newLector.getPost(), newLector.getDescription());
-        //User createdLector = userRepository.findById(idPerson).get();
-//        createdLector.getRoles().add(roleService.findOne(2));
-//        createdLector = userRepository.save(createdLector);
-//        return (Lector) createdLector;
+        newLector.setPost(lector.getPost());
+        newLector.setDegree(lector.getDegree());
+        //newLector.setTitle(lector.getTitle());
          return lectorRepository.save(newLector);
     }
 
@@ -103,7 +99,7 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     public Student saveStudent(Student student) {
         Student newStudent = new Student();
         Set<Role> roles = new HashSet<>();
-        roles.add(roleService.findOne(3));
+        roles.add(roleService.findByName("STUDENT"));
         newStudent.setRoles(roles);
         newStudent.setUsername(student.getUsername());
         newStudent.setFirstname(student.getFirstname());
@@ -112,11 +108,10 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
         newStudent.setPassword(bcryptEncoder.encode(student.getPassword()));
         Integer idPerson;
         newStudent.setGroup(student.getGroup());
-        idPerson = studentRepository.createStudent(student.getLastname(), student.getFirstname(), student.getMiddlename(),
-                student.getUsername(), bcryptEncoder.encode(student.getPassword()), student.getGroup().getNumber());
-        User createdStudent = userRepository.findById(idPerson).get();
-        createdStudent.getRoles().add(roleService.findOne(3));
-        createdStudent = userRepository.save(createdStudent);
+        Student createdStudent =  studentRepository.save(newStudent);
+        //User createdStudent = userRepository.findById(idPerson).get();
+        //createdStudent.getRoles().add(roleService.findByName("STUDENT"));
+        //createdStudent = userRepository.save(createdStudent);
         return (Student) createdStudent;
     }
 

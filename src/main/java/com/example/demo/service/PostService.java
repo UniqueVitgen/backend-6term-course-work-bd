@@ -11,4 +11,12 @@ public interface PostService {
     List<Post> findAll();
 
     Post findById(Integer id);
+
+    Post save(Post post);
+
+    Post edit(Post post);
+
+    void delete(Post post);
+
+    void delete(Integer id);
 }

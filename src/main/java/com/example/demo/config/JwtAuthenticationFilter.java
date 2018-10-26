@@ -25,12 +25,13 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import static com.example.demo.entity.Constants.HEADER_STRING;
 import static com.example.demo.entity.Constants.TOKEN_PREFIX;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
 
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;

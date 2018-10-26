@@ -4,18 +4,22 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name = "Факультет", catalog = "diplom_work", schema="DBO")
+@Table(name = "`Факультет`", catalog = "diplom_work", schema="DBO")
 public class Faculty {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_faculty")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "`id_Faculty`")
     private Integer idFaculty;
 
+    @NotNull
     private String name;
 
+    @NotNull
+    @Column(name = "`short_name`")
     private String shortName;
 
     @JsonIgnore

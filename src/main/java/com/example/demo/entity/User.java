@@ -6,24 +6,48 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "users", catalog = "diplom_work", schema="DBO")
+@Table(name = "Пользователь", catalog = "diplom_work", schema="DBO")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "in_only_test",
+                procedureName = "test_pkg.in_only_test",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inParam1", type = String.class)
+                }),
+        @NamedStoredProcedureQuery(name = "in_and_out_test",
+                procedureName = "test_pkg.in_and_out_test",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inParam1", type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "outParam1", type = String.class)
+                })
+})
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="`id_Person`")
     private Integer idPerson;
+
+    @NotNull
     @Column(nullable=false)
     protected String firstname;
+
+    @NotNull
     @Column(nullable=false)
     protected String middlename;
+
+    @NotNull
     @Column(nullable=false)
     protected String lastname;
+
+    @NotNull
     @Column(unique=true, nullable = false)
     protected String username;
+
+    @NotNull
     @Column(nullable=false)
     protected String password;
+
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles", catalog = "diplom_work", schema="DBO", joinColumns = @JoinColumn(name = "id_User"),
+    @JoinTable(name = "`Пользователи_Роли`", catalog = "diplom_work", schema="DBO", joinColumns = @JoinColumn(name = "id_User"),
             inverseJoinColumns = @JoinColumn(name = "id_Role"))
     private Set<Role> roles;
 

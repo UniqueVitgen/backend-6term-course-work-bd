@@ -12,4 +12,12 @@ public interface DegreeService {
     List<Degree> findAll();
 
     Degree findById(Integer id);
+
+    Degree save(Degree degree);
+
+    Degree edit(Degree degree);
+
+    void delete(Degree degree);
+
+    void delete(Integer id);
 }

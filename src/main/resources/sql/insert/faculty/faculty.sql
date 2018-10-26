@@ -1,0 +1,1 @@
+insert into diplom_work.dbo.Факультет (name, short_name) VALUES ('ФАКУЛЬТЕТ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ И РОБОТОТЕХНИКИ', 'ФИТР')
