@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class WordServiceImpl implements WordService {
     final String[] columns = {"Название", "Комментарий", "Дата начала", "Дата окончания", "Процент"};
-    static String path = "src/main/resources";
+    static String path = "src/main/resources/";
     static SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-mm-dd");
     @Override
     public File writeDiplomWork(DiplomWork diplomWork) {
