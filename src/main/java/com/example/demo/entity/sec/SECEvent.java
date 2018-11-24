@@ -11,7 +11,7 @@ import java.util.Date;
 public class SECEvent {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_sec_event`")
     private Integer id;
 

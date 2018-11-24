@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name = "`group`")
 public class Group {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Group`")
     private Integer idGroup;
 

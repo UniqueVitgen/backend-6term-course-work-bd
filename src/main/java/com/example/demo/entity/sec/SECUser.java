@@ -12,7 +12,7 @@ import java.util.Set;
 public class SECUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id_sec_user")
     private Integer id;
 

@@ -10,6 +10,7 @@ import java.util.Set;
 @Table(name="`diplom_work`")
 public class DiplomWork {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Diplom_work`")
     private Integer id;
 
@@ -55,7 +56,6 @@ public class DiplomWork {
     @OrderBy("startDate ASC")
     private Set<Percentage> percentages;
 
-    @NotNull
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "`id_Status`")
     private Status status;

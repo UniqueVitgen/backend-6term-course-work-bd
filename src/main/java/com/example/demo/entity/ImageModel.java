@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class ImageModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="`id_Image`")
     private Integer id;
 

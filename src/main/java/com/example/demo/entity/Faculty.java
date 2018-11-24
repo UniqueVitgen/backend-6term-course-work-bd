@@ -11,6 +11,7 @@ import java.util.Set;
 @Table(name = "`faculty`")
 public class Faculty {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Faculty`")
     private Integer idFaculty;
 

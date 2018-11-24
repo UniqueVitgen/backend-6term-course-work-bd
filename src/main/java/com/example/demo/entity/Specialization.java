@@ -13,6 +13,7 @@ import java.util.Set;
 public class Specialization {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Specialization`")
     private Integer idSpecialization;
 

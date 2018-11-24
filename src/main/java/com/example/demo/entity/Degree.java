@@ -17,6 +17,9 @@ public class Degree {
     @NotNull
     private String name;
 
+    @NotNull
+    @Column(name = "short_name")
+    private String shortName;
 
     @JsonIgnore
     @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL)
@@ -49,5 +52,13 @@ public class Degree {
 
     public void setLectors(Set<Lector> lectors) {
         this.lectors = lectors;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 }

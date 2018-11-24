@@ -12,6 +12,7 @@ import java.util.Date;
 public class Status {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="`id_Status`")
     private Integer id;
 
