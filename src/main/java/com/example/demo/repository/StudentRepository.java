@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.entity.Group;
 import com.example.demo.entity.Lector;
 import com.example.demo.entity.Student;
 import org.springframework.data.jpa.repository.Query;
@@ -34,4 +35,6 @@ public interface StudentRepository extends UserBaseRepository<Student> {
 
     @Override
     Optional<Student> findById(Integer integer);
+
+    List<Student> findAllByGroup(Group group);
 }

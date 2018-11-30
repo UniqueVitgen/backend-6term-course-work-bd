@@ -1,6 +1,7 @@
 package com.example.demo.service.files;
 
 import com.example.demo.entity.DiplomWork;
+import com.example.demo.entity.Group;
 import com.example.demo.entity.Percentage;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
@@ -15,7 +16,7 @@ import static com.itextpdf.text.Element.*;
 
 @Service
 public class PDFServiceImpl implements PDFService {
-    static String path = "src/main/resources";
+    static String path = "src/main/resources/";
 
     @Override
     public File writeDiplomWork(DiplomWork diplomWork) {
@@ -25,26 +26,77 @@ public class PDFServiceImpl implements PDFService {
             PdfWriter.getInstance(document,  new FileOutputStream(pathname));
 
             document.open();
-            final BaseFont bf = BaseFont.createFont("./arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-            Font fontRuTitle = new Font(bf, 16);
-            fontRuTitle.setStyle("bold");
-            Font fontRu = new Font(bf, 16);
-            Chunk chunkNameTitle = new Chunk("Название: ", fontRuTitle);
+//            final BaseFont bf = BaseFont.createFont("./arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+//            Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+//            Font fontRuTitle = new Font(bf, 16);
+//            fontRuTitle.setStyle("bold");
+//            Font fontRu = new Font(bf, 16);
+            addDiplomWorkTitle(document, diplomWork);
+            addPercentagesDiplomWork(document, diplomWork);
+
+            document.close();
+            File file = new File(pathname);
+            return file;
+        }
+        catch(FileNotFoundException fnfe) {
+
+        }
+        catch (DocumentException de) {
+
+        }
+        catch (IOException ioexc) {
+
+        }
+        return null;
+    }
+
+    public void addDiplomWorkTitle(Document document, DiplomWork diplomWork) {
+        BaseFont bf = null;
+        try {
+            bf = BaseFont.createFont("./arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        Font fontRuTitle = new Font(bf, 16);
+        fontRuTitle.setStyle("bold");
+        Font fontRu = new Font(bf, 16);
+        Chunk chunkNameTitle = new Chunk("Название: ", fontRuTitle);
 
 
 //            document.add(chunk);
-            Chunk chunkName = new Chunk(diplomWork.getName(), fontRu);
+        Chunk chunkName = new Chunk(diplomWork.getName(), fontRu);
 
 //            document.add(chunk);
-            Paragraph paragraphName = new Paragraph();
-            paragraphName.add(chunkNameTitle);
-            paragraphName.add(chunkName);
+        Paragraph paragraphName = new Paragraph();
+        paragraphName.add(chunkNameTitle);
+        paragraphName.add(chunkName);
 
-            addEmptyLine(paragraphName,2);
+        addEmptyLine(paragraphName,2);
 
+        try {
             document.add(paragraphName);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    public void addPercentagesDiplomWork(Document document, DiplomWork diplomWork) {
+        BaseFont bf = null;
+        try {
+            bf = BaseFont.createFont("./arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        Font fontRuTitle = new Font(bf, 16);
+        Font fontRu = new Font(bf, 16);
+        try {
             if(diplomWork.getPercentages().size() > 0) {
 
                 Paragraph paragraph = new Paragraph();
@@ -100,20 +152,10 @@ public class PDFServiceImpl implements PDFService {
                 document.add(table);
 
             }
-            document.close();
-            File file = new File(pathname);
-            return file;
         }
-        catch(FileNotFoundException fnfe) {
+        catch (DocumentException doc) {
 
         }
-        catch (DocumentException de) {
-
-        }
-        catch (IOException ioexc) {
-
-        }
-        return null;
     }
 
     private void addEmptyLine(Paragraph paragraph, int number) {

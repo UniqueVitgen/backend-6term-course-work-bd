@@ -16,10 +16,19 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findOne(Integer id) {
-
         Optional<Role> optional = roleRepository.findById(id);
         Role role = optional.get();
         return role;
+    }
+
+    @Override
+    public Role save(Role role) {
+        return roleRepository.save(role);
+    }
+
+    @Override
+    public Role Edit(Role role) {
+        return roleRepository.save(role);
     }
 
     @Override
@@ -30,5 +39,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role findByName(String name) {
         return roleRepository.findByName(name).get();
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Role role = findOne(id);
+        roleRepository.delete(role);
     }
 }
