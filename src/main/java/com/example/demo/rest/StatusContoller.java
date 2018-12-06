@@ -40,7 +40,7 @@ public class StatusContoller {
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping(value = "/edit", method = PUT)
+    @PutMapping("/edit")
     public @ResponseBody
     Status edit(@RequestBody Status status) {
         return statusService.edit(status);

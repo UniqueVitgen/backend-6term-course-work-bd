@@ -29,7 +29,8 @@ public class GlobalExceptionHandler {
         int code = 403;
         String message = "User is not exist";
         return new ApiError(code, message);
-
     }
+
+    @
 
 }
