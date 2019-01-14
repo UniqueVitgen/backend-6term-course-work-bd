@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SpecializationService {
 
-    List<Specialization> findAllByFaculty(Integer id_Faculty);
+    List<Specialization> findAllByDepartment(Integer id_Department);
 
     List<Specialization> findAll();
 

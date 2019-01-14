@@ -31,6 +31,4 @@ public class GlobalExceptionHandler {
         return new ApiError(code, message);
     }
 
-    @
-
 }

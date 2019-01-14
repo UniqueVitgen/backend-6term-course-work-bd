@@ -19,10 +19,10 @@ public class SpecializationController {
     private SpecializationService specializationService;
 
 
-    @RequestMapping(value = "/get-by-specialization/{id-faculty}", method = GET, consumes = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/get-by-department/{id-department}", method = GET, consumes = "application/json; charset=UTF-8")
     public @ResponseBody
-    List<Specialization> getSpecializationByFaculty(@PathVariable("id-faculty") Integer id) {
-        List<Specialization> users = specializationService.findAllByFaculty(id);
+    List<Specialization> getSpecializationByFaculty(@PathVariable("id-department") Integer id) {
+        List<Specialization> users = specializationService.findAllByDepartment(id);
         return users;
     }
 

@@ -99,14 +99,14 @@ public class WordGroupServiceImpl implements WordGroupService {
         Text chunkOrderBy = createText("ЗАГАД\n______№___");
         Text chunkCityBy = createText("г.Мiнск");
         Text chunkDescription = createText("Об утвержении тем, руководителей и назначении консультантов"
-                + " и нормоконтролера дипломных проектов студентам " + group.getSpecialization().getFaculty().getShortName()
+                + " и нормоконтролера дипломных проектов студентам " + group.getSpecialization().getDepartment().getFaculty().getShortName()
                 + " дневной формы получения образования");
         Object[] textUniversityRu = {chunkTitleRu, br, br, chunkUniversityRu, br, chunkOrderRu,
                 br, br, chunkCityRu};
         Object[] textUniversityBy = {chunkTitleBy, br, br, chunkUniversityBy, br, chunkOrderBy,
                 br, br, chunkCityRu};
         Text textDescription = createText("Об утвержении тем, руководителей и назначении консультантов"
-                + " и нормоконтролера дипломных проектов студентам " + group.getSpecialization().getFaculty().getShortName()
+                + " и нормоконтролера дипломных проектов студентам " + group.getSpecialization().getDepartment().getFaculty().getShortName()
                 + " дневной формы получения образования");
 
         P paragraphRu = createParagraph(textUniversityRu);
@@ -156,7 +156,7 @@ public class WordGroupServiceImpl implements WordGroupService {
         t2.setValue("\t1. Утвердить ниже перечисленными студентами 4-го курса, обучающимся"
                 + "по специальности " + group.getSpecialization().getCode()
                 + " \"" + group.getSpecialization().getName() + "\""
-                + " " + group.getSpecialization().getFaculty().getName()
+                + " " + group.getSpecialization().getDepartment().getFaculty().getName()
                 + " в дневной форме получения образования, следующие темы дипломных проектов"
                 + ", руководителей и  назначить консультантов дипломных проектов:");
         r2.getContent().add(t2);
@@ -179,7 +179,7 @@ public class WordGroupServiceImpl implements WordGroupService {
                     + " " + student.getLastname() + " " + student.getFirstname() + " " + student.getMiddlename() +
                     " - \"" + student.getDiplomWork().getName() + "\"."
                     + " Руководитель и консультант по компьютерному проектированию - "
-                    + student.getDiplomWork().getLeader().getPost().getName() + " кафедры"
+                    //+ student.getDiplomWork().getLeader().getPost().getName() + " кафедры"
                     + " " + student.getDiplomWork().getLeader().getLastname()
                     + " " + student.getDiplomWork().getLeader().getFirstname()
                     + " " + student.getDiplomWork().getLeader().getMiddlename() + ".");

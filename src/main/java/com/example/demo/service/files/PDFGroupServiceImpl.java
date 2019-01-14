@@ -64,7 +64,7 @@ public class PDFGroupServiceImpl implements PDFGroupService {
         Chunk chunkNameContent = new Chunk("\t1. Утвердить ниже перечисленными студентами 4-го курса, обучающимся"
                 + "по специальности " + group.getSpecialization().getCode()
                 + " \"" + group.getSpecialization().getName() + "\""
-                + " " + group.getSpecialization().getFaculty().getName()
+                + " " + group.getSpecialization().getDepartment().getFaculty().getName()
                 + " в дневной форме получения образования, следующие темы дипломных проектов"
                 + ", руководителей и  назначить консультантов дипломных проектов:", fontRu);
 
@@ -102,7 +102,7 @@ public class PDFGroupServiceImpl implements PDFGroupService {
                     + " " + student.getLastname() + " " + student.getFirstname() + " " + student.getMiddlename() +
                     " - \"" + student.getDiplomWork().getName() + "\"."
                     + " Руководитель и консультант по компьютерному проектированию - "
-                    + student.getDiplomWork().getLeader().getPost().getName() + " кафедры"
+                    //+ student.getDiplomWork().getLeader().getPost().getName() + " кафедры"
                     + " " + student.getDiplomWork().getLeader().getLastname()
                     + " " + student.getDiplomWork().getLeader().getFirstname()
                     + " " + student.getDiplomWork().getLeader().getMiddlename() + ".", fontRu);
@@ -138,7 +138,7 @@ public class PDFGroupServiceImpl implements PDFGroupService {
         Chunk chunkOrderBy = new Chunk("ЗАГАД\n______№___", fontRu);
         Chunk chunkCityBy = new Chunk("г.Мiнск", fontRu);
         Chunk chunkDescription = new Chunk("Об утвержении тем, руководителей и назначении консультантов"
-        + " и нормоконтролера дипломных проектов студентам " + group.getSpecialization().getFaculty().getShortName()
+        + " и нормоконтролера дипломных проектов студентам " + group.getSpecialization().getDepartment().getFaculty().getShortName()
         + " дневной формы получения образования", fontRu);
 
         paragraphRu.add(chunkTitleRu);

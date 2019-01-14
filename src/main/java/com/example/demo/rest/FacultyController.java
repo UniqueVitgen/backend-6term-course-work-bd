@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Path;
 import javax.xml.ws.Response;
 import java.util.List;
 
@@ -22,6 +23,13 @@ public class FacultyController {
     public @ResponseBody
     List<Faculty> facultiesList() {
         return facultyService.findAll();
+    }
+
+
+    @RequestMapping(value = "/findAll-by-university-{idUniversity}", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Faculty> facultiesListByUniversity(@PathVariable("idUniversity") Integer id) {
+        return facultyService.findAllByUniversityId(id);
     }
 
     @CrossOrigin(origins = {"http://localhost:4200"})

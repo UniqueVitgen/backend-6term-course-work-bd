@@ -19,7 +19,7 @@ public class Post {
 
     @JsonIgnore
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private Set<Lector> lectors;
+    private Set<LectorUniversity> lectors;
 
 
 
@@ -43,11 +43,11 @@ public class Post {
         this.name = name;
     }
 
-    public Set<Lector> getLectors() {
+    public Set<LectorUniversity> getLectors() {
         return lectors;
     }
 
-    public void setLectors(Set<Lector> lectors) {
+    public void setLectors(Set<LectorUniversity> lectors) {
         this.lectors = lectors;
     }
 }

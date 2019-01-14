@@ -23,7 +23,7 @@ public class Degree {
 
     @JsonIgnore
     @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL)
-    private Set<Lector> lectors;
+    private Set<LectorUniversity> lectors;
 
 
     public Degree() {
@@ -46,11 +46,11 @@ public class Degree {
         this.name = name;
     }
 
-    public Set<Lector> getLectors() {
+    public Set<LectorUniversity> getLectors() {
         return lectors;
     }
 
-    public void setLectors(Set<Lector> lectors) {
+    public void setLectors(Set<LectorUniversity> lectors) {
         this.lectors = lectors;
     }
 

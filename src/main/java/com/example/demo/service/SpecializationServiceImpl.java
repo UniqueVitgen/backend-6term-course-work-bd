@@ -20,8 +20,8 @@ public class SpecializationServiceImpl implements SpecializationService {
     private FacultyRepository facultyRepository;
 
     @Override
-    public List<Specialization> findAllByFaculty(Integer id_Faculty) {
-        return specializationRepository.findSpecializationByFacultyId(id_Faculty);
+    public List<Specialization> findAllByDepartment(Integer id_Department) {
+        return specializationRepository.findSpecializationByDepartmentId(id_Department);
     }
 
     @Override

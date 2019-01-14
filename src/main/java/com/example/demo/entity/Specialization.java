@@ -29,8 +29,8 @@ public class Specialization {
     private String code;
 
     @ManyToOne
-    @JoinColumn(name = "`id_Faculty`")
-    private Faculty faculty;
+    @JoinColumn(name = "`id_Department`")
+    private Department department;
 
     @JsonIgnore
     @OneToMany(mappedBy = "specialization", cascade = CascadeType.ALL)
@@ -48,12 +48,12 @@ public class Specialization {
         this.idSpecialization = idSpecialization;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getName() {

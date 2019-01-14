@@ -24,7 +24,11 @@ public class Faculty {
 
     @JsonIgnore
     @OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL)
-    private Set<Specialization> specializations;
+    private Set<Department> departments;
+
+    @ManyToOne
+    @JoinColumn(name = "`id_University`")
+    private University university;
 
     public Faculty() {
 
@@ -62,13 +66,22 @@ public class Faculty {
         this.idFaculty = idFaculty;
     }
 
-    public Set<Specialization> getSpecializations() {
-        return specializations;
+    public Set<Department> getDepartments() {
+        return departments;
     }
 
-    public void setSpecializations(Set<Specialization> specializations) {
-        this.specializations = specializations;
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
     }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
+    }
+
 
     //    public Set<Group> getGroups() {
 //        return groups;

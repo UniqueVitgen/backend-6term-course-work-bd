@@ -2,6 +2,7 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.Faculty;
 import com.example.demo.entity.Role;
+import com.example.demo.entity.University;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +15,8 @@ public interface FacultyRepository extends CrudRepository<Faculty, Integer> {
 
     @Override
     List<Faculty> findAll();
+
+    List<Faculty> findByUniversity(University university);
 
 
 }
