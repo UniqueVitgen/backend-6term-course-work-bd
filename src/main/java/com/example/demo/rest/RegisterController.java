@@ -65,7 +65,7 @@ public class RegisterController {
     Lector SignUpLector(@RequestBody LectorUniversity lector) {
         System.out.println(lector);
         System.out.println("entered in stuedent 1 sign up");
-        User user = userService.findByUsername(lector.getUsername());
+        User user = lectorService.findByUsername(lector.getUsername());
         if(user != null) {
             return null;
         }

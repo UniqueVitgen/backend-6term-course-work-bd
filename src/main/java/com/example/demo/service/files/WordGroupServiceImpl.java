@@ -44,40 +44,6 @@ public class WordGroupServiceImpl implements WordGroupService {
 
             wordPackage.save(exportFile);
             return exportFile;
-//
-//            RPr rpr = factory.createRPr();
-//            BooleanDefaultTrue b = new BooleanDefaultTrue();
-//            rpr.setB(b);
-//            rpr.setI(b);
-//            rpr.setCaps(b);
-//            Color green = factory.createColor();
-//            green.setVal("green");
-//            rpr.setColor(green);
-//            r.setRPr(rpr);
-//
-//            r.getContent().add(t);
-//            p.getContent().add(r);
-//            int writableWidthTwips = wordPackage.getDocumentModel()
-//                    .getSections().get(0).getPageDimensions().getWritableWidthTwips();
-//            int columnNumber = 3;
-//            Tbl tbl = TblFactory.createTable(3, 3, writableWidthTwips/columnNumber);
-//            List<Object> rows = tbl.getContent();
-//            for (Object row : rows) {
-//                Tr tr = (Tr) row;
-//                List<Object> cells = tr.getContent();
-//                for(Object cell : cells) {
-//                    Tc td = (Tc) cell;
-//                    td.getContent().add(p);
-//                }
-//            }
-//            mainDocumentPart.getContent().add(tbl);
-////            Text text = factory.createText();
-////            text.setValue();
-////            mainDocumentPart.getContent().add(text);
-//
-//            mainDocumentPart.getContent().add(p);
-//            File exportFile = new File("welcome.docx");
-//            wordPackage.save(exportFile);
         }
         catch(Docx4JException docExc) {
 
@@ -155,7 +121,7 @@ public class WordGroupServiceImpl implements WordGroupService {
 
         t2.setValue("\t1. Утвердить ниже перечисленными студентами 4-го курса, обучающимся"
                 + "по специальности " + group.getSpecialization().getCode()
-                + " \"" + group.getSpecialization().getName() + "\""
+                + " \"" + group.getSpecialization().getName() + "»"
                 + " " + group.getSpecialization().getDepartment().getFaculty().getName()
                 + " в дневной форме получения образования, следующие темы дипломных проектов"
                 + ", руководителей и  назначить консультантов дипломных проектов:");
@@ -170,22 +136,25 @@ public class WordGroupServiceImpl implements WordGroupService {
     private void addStudents(MainDocumentPart mainDocumentPart, Group group) {
 
         for(int i = 0; i < group.getStudents().size(); i++) {
-            Student student = group.getStudents().get(i);
-            Text text = factory.createText();
-            P p = factory.createP();
-            R r = factory.createR();
 
-            text.setValue("\t1." + (i + 1)
-                    + " " + student.getLastname() + " " + student.getFirstname() + " " + student.getMiddlename() +
-                    " - \"" + student.getDiplomWork().getName() + "\"."
-                    + " Руководитель и консультант по компьютерному проектированию - "
-                    //+ student.getDiplomWork().getLeader().getPost().getName() + " кафедры"
-                    + " " + student.getDiplomWork().getLeader().getLastname()
-                    + " " + student.getDiplomWork().getLeader().getFirstname()
-                    + " " + student.getDiplomWork().getLeader().getMiddlename() + ".");
-            r.getContent().add(text);
-            p.getContent().add(r);
-            mainDocumentPart.getContent().add(p);
+            Student student = group.getStudents().get(i);
+            if(student.getDiplomWork() != null) {
+                Text text = factory.createText();
+                P p = factory.createP();
+                R r = factory.createR();
+
+                text.setValue("\t1." + (i + 1)
+                        + " " + student.getLastname() + " " + student.getFirstname() + " " + student.getMiddlename() +
+                        " - \"" + student.getDiplomWork().getName() + "»."
+                        + " Руководитель и консультант по компьютерному проектированию - "
+                        //+ student.getDiplomWork().getLeader().getPost().getName() + " кафедры"
+                        + " " + student.getDiplomWork().getLeader().getLastname()
+                        + " " + student.getDiplomWork().getLeader().getFirstname()
+                        + " " + student.getDiplomWork().getLeader().getMiddlename() + ".");
+                r.getContent().add(text);
+                p.getContent().add(r);
+                mainDocumentPart.getContent().add(p);
+            }
             //paragraphStudents.add(chunkStudent);
         }
     }

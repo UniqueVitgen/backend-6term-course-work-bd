@@ -24,4 +24,8 @@ public interface UserService<T,IRepository> {
     public User saveOrganizer(User organizer);
 
     public User saveSecretary(User secretary);
+
+    public String formatFullName(User user);
+
+    public String formatSurnameWithInitials(User user);
 }

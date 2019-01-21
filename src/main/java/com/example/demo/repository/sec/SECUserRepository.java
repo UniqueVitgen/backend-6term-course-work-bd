@@ -9,4 +9,6 @@ public interface SECUserRepository extends CrudRepository<SECUser, Integer> {
     @Override
     List<SECUser> findAll();
 
+    List<SECUser> findAllById(List<Integer> ids);
+
 }

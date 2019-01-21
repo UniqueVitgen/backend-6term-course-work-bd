@@ -1,5 +1,7 @@
 package com.example.demo.entity.sec;
 
+import com.example.demo.entity.DiplomWork;
+import com.example.demo.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -15,6 +17,10 @@ public class SECUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id_sec_user")
     private Integer id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`id_Person`")
+    private User user;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "`sec_users_roles`",  joinColumns = @JoinColumn(name = "id_sec_user"),
@@ -83,5 +89,13 @@ public class SECUser {
 
     public void setSecs(Set<SEC> secs) {
         this.secs = secs;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

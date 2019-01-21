@@ -1,5 +1,6 @@
 package com.example.demo.entity.sec;
 
+import com.example.demo.entity.Department;
 import com.example.demo.entity.Group;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,8 +20,11 @@ public class SEC {
     @Column(name = "`id_sec`")
     private Integer id;
 
-    @OneToMany(mappedBy = "sec", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sec", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Group> groups;
+
+//    @One
+//    private List<Department> departments
 
     @OneToMany(mappedBy = "sec", cascade = CascadeType.ALL)
     private Set<SECEvent> events;

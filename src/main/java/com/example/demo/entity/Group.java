@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.deploy.panel.SpecialTreeListener;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,9 +23,9 @@ public class Group {
     @NotNull
     private String number;
 
-    @NotNull
-    @Column(name = "`amount_student`")
-    private int amountStudent;
+//    @Formula("(select count(*) from student  st where st.id_Group= id_Group)")
+//    @Column(name = "`amount_student`", nullable = true)
+//    private Integer amountStudent = 0;
 
 
     @JsonBackReference
@@ -66,13 +67,6 @@ public class Group {
         this.number = number;
     }
 
-    public int getAmount_student() {
-        return amountStudent;
-    }
-
-    public void setAmount_student(int amount_student) {
-        this.amountStudent = amount_student;
-    }
 
     public Specialization getSpecialization() {
         return specialization;
@@ -90,13 +84,13 @@ public class Group {
         this.students = students;
     }
 
-    public int getAmountStudent() {
-        return amountStudent;
-    }
-
-    public void setAmountStudent(int amountStudent) {
-        this.amountStudent = amountStudent;
-    }
+//    public Integer getAmountStudent() {
+//        return amountStudent;
+//    }
+//
+//    public void setAmountStudent(Integer amountStudent) {
+//        this.amountStudent = amountStudent;
+//    }
 
     public SEC getSec() {
         return sec;

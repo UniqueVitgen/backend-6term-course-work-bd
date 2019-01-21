@@ -66,8 +66,10 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     public Lector saveLectorUniversity(LectorUniversity lector) {
         User newUser = new User();
         Set<Role> roles = new HashSet<>();
+//        Role role = new Role();
+//        role.setName("LECTOR");
+//        roles.add(role);
         roles.add(roleService.findByName("LECTOR"));
-        //roles.add(roleService.findByName("LECTURE"));
         newUser.setRoles(roles);
         newUser.setUsername(lector.getUsername());
         newUser.setFirstname(lector.getFirstname());
@@ -78,6 +80,8 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
 
 
         LectorUniversity newLector = new LectorUniversity();
+        newLector.setFree(true);
+        newLector.setMaxCountOfDiplom(7);
         newLector.setRoles(newUser.getRoles());
         newLector.setUsername(newUser.getUsername());
         newLector.setFirstname(newUser.getFirstname());
@@ -96,10 +100,15 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     @Override
     public Lector saveLectorOrganizer(LectorOrganization lectorOrganization) {
         Set<Role> roles = new HashSet<>();
+//        Role role = new Role();
+//        role.setName("LECTOR");
+//        roles.add(role);
         roles.add(roleService.findByName("LECTOR"));
 
 
         LectorOrganization newLector = new LectorOrganization();
+        newLector.setFree(true);
+        newLector.setMaxCountOfDiplom(7);
         newLector.setRoles(roles);
         newLector.setUsername(lectorOrganization.getUsername());
         newLector.setFirstname(lectorOrganization.getFirstname());
@@ -116,6 +125,9 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     public Student saveStudent(Student student) {
         Student newStudent = new Student();
         Set<Role> roles = new HashSet<>();
+//        Role role = new Role();
+//        role.setName("STUDENT");
+//        roles.add(role);
         roles.add(roleService.findByName("STUDENT"));
         newStudent.setRoles(roles);
         newStudent.setUsername(student.getUsername());
@@ -135,6 +147,9 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     @Override
     public User saveOrganizer(User organizer) {
         Set<Role> roles = new HashSet<>();
+//        Role role = new Role();
+//        role.setName("ORGANIZER");
+//        roles.add(role);
         roles.add(roleService.findByName("ORGANIZER"));
         organizer.setRoles(roles);
         organizer.setPassword(bcryptEncoder.encode(organizer.getPassword()));
@@ -145,11 +160,56 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     @Override
     public User saveSecretary(User secretary) {
         Set<Role> roles = new HashSet<>();
+//        Role role = new Role();
+//        role.setName("SECRETARY_SEC");
+//        roles.add(role);
         roles.add(roleService.findByName("SECRETARY_SEC"));
         secretary.setRoles(roles);
         secretary.setPassword(bcryptEncoder.encode(secretary.getPassword()));
         userRepository.save(secretary);
         return secretary;
+    }
+
+    @Override
+    public String formatFullName(User user) {
+        String fullname = "";
+        if (!user.getLastname().equals("")) {
+            fullname += user.getLastname();
+        }
+        if (!user.getFirstname().equals("")) {
+            if (!fullname.equals("")) {
+                fullname += " ";
+            }
+            fullname += user.getFirstname();
+        }
+        if (!user.getMiddlename().equals("")) {
+            if (!fullname.equals("")) {
+                fullname += " ";
+            }
+            fullname += user.getMiddlename();
+        }
+        return fullname;
+    }
+
+    @Override
+    public String formatSurnameWithInitials(User user) {
+        String fullname = "";
+        if (!user.getLastname().equals("")) {
+            fullname += user.getLastname();
+        }
+        if (!user.getFirstnameInitial().equals("")) {
+            if (!fullname.equals("")) {
+                fullname += " ";
+            }
+            fullname += user.getFirstnameInitial() + ".";
+        }
+        if (!user.getMiddlenameInitial().equals("")) {
+            if (!fullname.equals("")) {
+                fullname += " ";
+            }
+            fullname += user.getMiddlenameInitial() + ".";
+        }
+        return fullname;
     }
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {

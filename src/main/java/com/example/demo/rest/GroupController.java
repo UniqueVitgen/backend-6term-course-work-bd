@@ -65,7 +65,7 @@ public class GroupController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public @ResponseBody
     Group save(@RequestBody Group group) {
-        group.setAmount_student(0);
+//        group.setAmount_student(0);
         return groupService.save(group);
     }
 

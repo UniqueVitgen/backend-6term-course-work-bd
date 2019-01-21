@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.Lector;
+import com.example.demo.entity.sec.SECUser;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
@@ -8,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 public interface LectorRepository extends UserBaseRepository<Lector> {
@@ -43,4 +45,18 @@ public interface LectorRepository extends UserBaseRepository<Lector> {
 
   @Override
   List<Lector> findAll();
+
+//  List<Lector> findAllBySecUserIsNullOrSecUserIdIsNotIn(List<Integer> ids);
+//
+//  List<Lector> findAllBySecUserIsNull();
+//
+//  List<Lector> findAllBySecUserNull();
+//
+//  List<Lector> findAllBySecUserIdIsNull();
+//
+//  List<Lector> findAllBySecUserIdIsNullOrSecUserIdIsNotIn(List<Integer> ids);
+
+  List<Lector> findAllBySecUsersIsNotContaining(List<SECUser> secUsers);
+
+  Optional<Lector> findByUsername(String username);
 }

@@ -31,22 +31,22 @@ public class DiplomWork {
     private Lector leader;
 
 
-    @NotNull
+//    @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "`id_Recensor`")
     private Lector recensor;
 
-    @NotNull
+//    @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "`id_Science_consultor`")
     private Lector scienceConsultor;
 
-    @NotNull
+//    @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "`id_Ot_consultor`")
     private Lector otConsultor;
 
-    @NotNull
+//    @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "`id_Teo_consultor`")
     private Lector teoConsultor;

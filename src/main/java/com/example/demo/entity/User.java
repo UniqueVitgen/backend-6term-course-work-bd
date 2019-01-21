@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.sec.SECUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,9 +34,19 @@ public class User {
     @Column(nullable=false)
     protected String firstname;
 
+    @Formula("left(firstname,1)")
+    @Column(name = "`firstname_initial`")
+    protected String firstnameInitial;
+
     @NotNull
     @Column(nullable=false)
     protected String middlename;
+
+
+    @Formula("left(middlename,1)")
+    @Column(name = "`middlename_initial`")
+    protected String middlenameInitial;
+
 
     @NotNull
     @Column(nullable=false)
@@ -56,6 +68,10 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<News> news;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<SECUser> secUsers;
 
     public Set<Role> getRoles() {
         return roles;
@@ -111,5 +127,37 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Set<News> getNews() {
+        return news;
+    }
+
+    public void setNews(Set<News> news) {
+        this.news = news;
+    }
+
+    public Set<SECUser> getSecUsers() {
+        return secUsers;
+    }
+
+    public void setSecUsers(Set<SECUser> secUsers) {
+        this.secUsers = secUsers;
+    }
+
+    public String getFirstnameInitial() {
+        return firstnameInitial;
+    }
+
+    public void setFirstnameInitial(String firstnameInitial) {
+        this.firstnameInitial = firstnameInitial;
+    }
+
+    public String getMiddlenameInitial() {
+        return middlenameInitial;
+    }
+
+    public void setMiddlenameInitial(String middlenameInitial) {
+        this.middlenameInitial = middlenameInitial;
     }
 }
