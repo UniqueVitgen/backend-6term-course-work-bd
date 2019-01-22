@@ -24,39 +24,6 @@ public class GroupServiceImpl implements GroupService  {
     }
 
     @Override
-    public List<Group> findAllBySecList(List<SEC> secList) {
-        return groupRepository.findAllBySecIn(secList);
-    }
-
-    @Override
-    public List<Group> findAllBySecIdList(List<Integer> secIdList) {
-        List<SEC> secList = new ArrayList<>();
-        for(Integer secId: secIdList) {
-            secList.add(secRepository.findById(secId).get());
-        }
-        return groupRepository.findAllBySecIn(secList);
-    }
-
-    @Override
-    public List<Group> findAllBySecListOrNull(List<SEC> secList) {
-        List<Integer> ids = new ArrayList<>();
-        for(SEC sec: secList) {
-            ids.add(sec.getId());
-        }
-        return groupRepository.findAllBySecInOrNull(ids);
-    }
-
-    @Override
-    public List<Group> findAllBySecIdListOrNull(List<Integer> secIdList) {
-        return groupRepository.findAllBySecInOrNull(secIdList);
-    }
-
-    @Override
-    public List<Group> findAllBySecIsNull() {
-        return groupRepository.findAllBySecIsNull();
-    }
-
-    @Override
     public List<Group> findAll() {
         return groupRepository.findAll();
     }

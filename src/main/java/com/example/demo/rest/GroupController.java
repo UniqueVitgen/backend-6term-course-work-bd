@@ -140,21 +140,21 @@ public class GroupController {
         return studentService.findAllByGroupId(id);
     }
 
-    @RequestMapping(value="/find-all-by-sec", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Group> findBySecs(@RequestParam("secIds") List<Integer> secIds) {
-        return groupService.findAllBySecIdList(secIds);
-    }
-
-    @RequestMapping(value="/find-all-by-sec-or-null", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Group> findBySecsOrNull(@RequestParam("secIds") List<Integer> secIds) {
-        return groupService.findAllBySecIdListOrNull(secIds);
-    }
-
-    @RequestMapping(value="/find-all-by-where-sec-is-null", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Group> findBySecIsNull() {
-        return groupService.findAllBySecIsNull();
-    }
+//    @RequestMapping(value="/find-all-by-sec", method = RequestMethod.GET)
+//    public @ResponseBody
+//    List<Group> findBySecs(@RequestParam("secIds") List<Integer> secIds) {
+//        return groupService.findAllBySecIdList(secIds);
+//    }
+//
+//    @RequestMapping(value="/find-all-by-sec-or-null", method = RequestMethod.GET)
+//    public @ResponseBody
+//    List<Group> findBySecsOrNull(@RequestParam("secIds") List<Integer> secIds) {
+//        return groupService.findAllBySecIdListOrNull(secIds);
+//    }
+//
+//    @RequestMapping(value="/find-all-by-where-sec-is-null", method = RequestMethod.GET)
+//    public @ResponseBody
+//    List<Group> findBySecIsNull() {
+//        return groupService.findAllBySecIsNull();
+//    }
 }

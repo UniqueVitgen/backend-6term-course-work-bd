@@ -14,16 +14,16 @@ public interface GroupRepository extends CrudRepository<Group, Integer> {
     @Query(value = "select * from  diplom_work.group as sp where sp.id_specialization = :id", nativeQuery = true)
     List<Group> findAllBySpecializationId(@Param("id") Integer id);
 
-    List<Group> findAllBySecIn(List<SEC> secList);
+//    List<Group> findAllBySecIn(List<SEC> secList);
 
-    List<Group> findAllBySec(SEC sec);
+//    List<Group> findAllBySec(SEC sec);
 
     @Override
     List<Group> findAll();
 
-    @Query("SELECT l1 FROM Group l1 WHERE l1.sec.id IN :ids or l1.sec.id is null")
-    List<Group> findAllBySecInOrNull(@Param("ids") List<Integer> ids);
+//    @Query("SELECT l1 FROM Group l1 WHERE l1.sec.id IN :ids or l1.sec.id is null")
+//    List<Group> findAllBySecInOrNull(@Param("ids") List<Integer> ids);
 
-    List<Group> findAllBySecIsNull();
+//    List<Group> findAllBySecIsNull();
 
 }

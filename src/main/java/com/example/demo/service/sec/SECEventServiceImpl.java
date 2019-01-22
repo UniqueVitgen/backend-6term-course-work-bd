@@ -40,7 +40,10 @@ public class SECEventServiceImpl implements SECEventService {
 
     @Override
     public SECEvent edit(SECEvent sec) {
-        return secRepository.save(sec);
+        SECEvent secEvent = secRepository.findById(sec.getId()).get();
+        secEvent.setDate(sec.getDate());
+        secEvent.setAddress(sec.getAddress());
+        return secRepository.save(secEvent);
     }
 
     @Override

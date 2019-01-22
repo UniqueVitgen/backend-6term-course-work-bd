@@ -26,7 +26,7 @@ public class NewsController {
 
     @CrossOrigin(origins = {"http://localhost:4200"})
     @RequestMapping(value = "/news-{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     public @ResponseBody
     News diplomWork(@PathVariable("id") Integer id) {
         return newsService.findById(id);

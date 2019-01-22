@@ -9,15 +9,15 @@ import java.util.List;
 public interface GroupService {
     List<Group> findAllBySpecialization(Integer id_Specialization);
 
-    List<Group> findAllBySecList(List<SEC> secList);
+//    List<Group> findAllBySecList(List<SEC> secList);
 
-    List<Group> findAllBySecIdList(List<Integer> secIdList);
+//    List<Group> findAllBySecIdList(List<Integer> secIdList);
 
-    List<Group> findAllBySecListOrNull(List<SEC> secList);
+//    List<Group> findAllBySecListOrNull(List<SEC> secList);
 
-    List<Group> findAllBySecIdListOrNull(List<Integer> secIdList);
+//    List<Group> findAllBySecIdListOrNull(List<Integer> secIdList);
 
-    List<Group> findAllBySecIsNull();
+//    List<Group> findAllBySecIsNull();
 
     List<Group> findAll();
 

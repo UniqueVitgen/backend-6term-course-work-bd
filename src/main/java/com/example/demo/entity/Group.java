@@ -28,10 +28,10 @@ public class Group {
 //    private Integer amountStudent = 0;
 
 
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_sec")
-    private SEC sec;
+//    @JsonBackReference
+//    @ManyToOne(cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "id_sec")
+//    private SEC sec;
 
     @NotNull
     @ManyToOne
@@ -84,6 +84,7 @@ public class Group {
         this.students = students;
     }
 
+
 //    public Integer getAmountStudent() {
 //        return amountStudent;
 //    }
@@ -92,11 +93,11 @@ public class Group {
 //        this.amountStudent = amountStudent;
 //    }
 
-    public SEC getSec() {
-        return sec;
-    }
-
-    public void setSec(SEC sec) {
-        this.sec = sec;
-    }
+//    public SEC getSec() {
+//        return sec;
+//    }
+//
+//    public void setSec(SEC sec) {
+//        this.sec = sec;
+//    }
 }

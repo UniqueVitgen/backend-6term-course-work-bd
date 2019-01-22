@@ -23,11 +23,11 @@ public class Lector extends User {
 
   @Column(nullable = true)
   @Formula("(select count(*) < max_count_of_diplom from diplom_work  dw where dw.id_Leader= id_Person)")
-  private Boolean free;
+  private Boolean free = true;
 
   @Formula("(select count(*) from diplom_work  dw where dw.id_Leader= id_Person)")
   @Column(name = "`count_of_diplom`")
-  private Integer countOfDiplom;
+  private Integer countOfDiplom = 0;
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   @OneToMany(mappedBy = "leader", cascade = CascadeType.ALL)
   private List<DiplomWork> diplomWorksLikeLeader;

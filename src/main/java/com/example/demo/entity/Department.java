@@ -1,10 +1,13 @@
 package com.example.demo.entity;
 
 
+import com.example.demo.entity.sec.SEC;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,6 +19,10 @@ public class Department {
     private Integer id;
 
 
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<SEC> secs;
 
     @JsonIgnore
     @OneToOne(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -82,5 +89,13 @@ public class Department {
 
     public void setLector(LectorUniversity lector) {
         this.lector = lector;
+    }
+
+    public List<SEC> getSecs() {
+        return secs;
+    }
+
+    public void setSecs(List<SEC> secs) {
+        this.secs = secs;
     }
 }

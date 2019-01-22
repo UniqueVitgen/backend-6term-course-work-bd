@@ -20,6 +20,9 @@ public class DiplomWorkServiceImpl implements DiplomWorkService{
     @Autowired
     private StatusService statusService;
 
+    @Autowired
+    private LectorService lectorService;
+
     @Override
     public DiplomWork findById(Integer id) {
         return diplomWorkRepository.findById(id).get();
@@ -45,8 +48,26 @@ public class DiplomWorkServiceImpl implements DiplomWorkService{
 
     @Override
     public DiplomWork edit(DiplomWork diplomWork) {
+        DiplomWork editedDiplomWork = diplomWorkRepository.findById(diplomWork.getId()).get();
 //        diplomWorkRepository.flush()
-        return diplomWorkRepository.save(diplomWork);
+        editedDiplomWork.setName(diplomWork.getName());
+        editedDiplomWork.setStatus(diplomWork.getStatus());
+        editedDiplomWork.setLeader(lectorService.findByUsername(diplomWork.getLeader().getUsername()));
+        editedDiplomWork.setComment(diplomWork.getComment());
+        if(diplomWork.getTeoConsultor() != null) {
+            editedDiplomWork.setTeoConsultor(lectorService.findByUsername(diplomWork.getTeoConsultor().getUsername()));
+        }
+        if (diplomWork.getScienceConsultor() != null) {
+            editedDiplomWork.setScienceConsultor(lectorService.findByUsername(diplomWork.getScienceConsultor().getUsername()));
+        }
+        if (diplomWork.getOtConsultor() != null) {
+            editedDiplomWork.setOtConsultor(lectorService.findByUsername(diplomWork.getOtConsultor().getUsername()));
+        }
+        if (diplomWork.getRecensor() != null) {
+            editedDiplomWork.setRecensor(lectorService.findByUsername(diplomWork.getRecensor().getUsername()));
+        }
+//        editedDiplomWork.set
+        return diplomWorkRepository.save(editedDiplomWork);
     }
 
     @Override

@@ -44,7 +44,7 @@ public class SECEventController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.PUT)
     public @ResponseBody
-    SECEvent edit(@RequestBody SECEventForm secEvent) {
+    SECEvent edit(@RequestBody SECEvent secEvent) {
         return secEventService.edit(secEvent);
     }
 

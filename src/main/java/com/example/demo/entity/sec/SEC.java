@@ -2,6 +2,7 @@ package com.example.demo.entity.sec;
 
 import com.example.demo.entity.Department;
 import com.example.demo.entity.Group;
+import com.example.demo.entity.Specialization;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,8 +21,10 @@ public class SEC {
     @Column(name = "`id_sec`")
     private Integer id;
 
-    @OneToMany(mappedBy = "sec", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Group> groups;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "`id_Department`")
+    private Department department;
 
 //    @One
 //    private List<Department> departments
@@ -33,6 +36,11 @@ public class SEC {
     @JoinTable(name = "`sec_users_secs`", joinColumns = @JoinColumn(name = "id_sec"),
             inverseJoinColumns = @JoinColumn(name = "id_sec_user"))
     private Set<SECUser> users;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "`secs_specializations`", joinColumns = @JoinColumn(name = "id_sec"),
+            inverseJoinColumns = @JoinColumn(name = "`id_Specialization`"))
+    private Set<Specialization> specializations;
 
     @NotNull
     @Column(name="`start_date`")
@@ -51,12 +59,12 @@ public class SEC {
         this.id = id;
     }
 
-    public List<Group> getGroups() {
-        return groups;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Date getStartDate() {
@@ -89,5 +97,13 @@ public class SEC {
 
     public void setUsers(Set<SECUser> users) {
         this.users = users;
+    }
+
+    public Set<Specialization> getSpecializations() {
+        return specializations;
+    }
+
+    public void setSpecializations(Set<Specialization> specializations) {
+        this.specializations = specializations;
     }
 }

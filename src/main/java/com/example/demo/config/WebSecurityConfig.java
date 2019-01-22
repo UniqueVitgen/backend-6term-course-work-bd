@@ -57,7 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/lectors/*", "/diplom-work/**",
                         "/percentage/**", "/status/**").hasAnyAuthority("LECTOR",
                 "STUDENT", "ADMIN", "ORGANIZER", "SECRETARY_SEC")
-                .antMatchers("/sec/**", "/sec-event/**", "/sec-role/**", "/sec-user/**").hasAnyAuthority("SECRETARY_SEC", "ADMIN")
+                .antMatchers("/sec/**", "/sec-event/**", "/sec-role/**", "/sec-user/**")
+                .hasAnyAuthority("SECRETARY_SEC", "ADMIN", "ORGANIZER")
                 .antMatchers("/getallfiles").hasAnyAuthority("LECTOR",
                 "ADMIN", "ORGANIZER", "SECRETARY_SEC")
 //                .antMatchers(  ).hasRole("LECTOR")

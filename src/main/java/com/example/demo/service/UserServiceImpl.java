@@ -80,7 +80,7 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
 
 
         LectorUniversity newLector = new LectorUniversity();
-        newLector.setFree(true);
+//        newLector.setFree(true);
         newLector.setMaxCountOfDiplom(7);
         newLector.setRoles(newUser.getRoles());
         newLector.setUsername(newUser.getUsername());
@@ -107,7 +107,7 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
 
 
         LectorOrganization newLector = new LectorOrganization();
-        newLector.setFree(true);
+//        newLector.setFree(true);
         newLector.setMaxCountOfDiplom(7);
         newLector.setRoles(roles);
         newLector.setUsername(lectorOrganization.getUsername());

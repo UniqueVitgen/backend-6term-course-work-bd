@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.sec.SEC;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -35,6 +37,11 @@ public class Specialization {
     @JsonIgnore
     @OneToMany(mappedBy = "specialization", cascade = CascadeType.ALL)
     private Set<Group> groups;
+
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "specializations",fetch = FetchType.EAGER)
+    private Set<SEC> secs;
 
     public Specialization() {
 
@@ -86,6 +93,14 @@ public class Specialization {
 
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
+    }
+
+    public Set<SEC> getSecs() {
+        return secs;
+    }
+
+    public void setSecs(Set<SEC> secs) {
+        this.secs = secs;
     }
 
     //    public Department getDepartment() {
