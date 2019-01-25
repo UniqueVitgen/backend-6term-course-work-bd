@@ -1,6 +1,9 @@
 package com.example.demo.rest;
 
+import com.example.demo.entity.Lector;
+import com.example.demo.entity.LectorUniversity;
 import com.example.demo.entity.User;
+import com.example.demo.entity.form.UserUploadForm;
 import com.example.demo.service.LectorService;
 import com.example.demo.service.UserService;
 
@@ -43,35 +46,13 @@ public class UserController {
         return userService.findOne(id);
     }
 
+    @RequestMapping(value = "/upload-photo", method = GET)
+    public User uploadPhoto(@RequestParam("idUser") Integer idUser, @RequestParam("filename") String filename) {
+        return userService.uploadPhoto(idUser, filename);
+    }
 
-
-
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    void login() {
-//        String jwtToken = "";
-//
-//        if (login.getEmail() == null || login.getPassword() == null) {
-////            throw new ServletException("Please fill in username and password");
-//        }
-//
-//        String email = login.getEmail();
-//        String password = login.getPassword();
-//
-//        User user = userService.findByEmail(email);
-//
-//        if (user == null) {
-////            throw new ServletException("User email not found.");
-//        }
-//
-//        String pwd = user.getPassword();
-//
-//        if (!password.equals(pwd)) {
-//            throw new ServletException("Invalid login. Please check your name and password.");
-//        }
-//
-//        jwtToken = Jwts.builder().setSubject(email).claim("roles", "user").setIssuedAt(new Date())
-//                .signWith(SignatureAlgorithm.HS, "secretkey").compact();
-//
-//        return jwtToken;
-//    }
+    @RequestMapping(value = "/update-user-organizer-role-{isOrganizer}", method = PUT)
+    public User updateUserOrganizer(@RequestBody User user, @PathVariable("isOrganizer") Boolean isOrganizer) {
+        return userService.editOrganizerRole(user, isOrganizer);
+    }
 }

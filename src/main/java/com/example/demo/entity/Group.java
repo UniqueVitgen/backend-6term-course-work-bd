@@ -23,9 +23,9 @@ public class Group {
     @NotNull
     private String number;
 
-//    @Formula("(select count(*) from student  st where st.id_Group= id_Group)")
-//    @Column(name = "`amount_student`", nullable = true)
-//    private Integer amountStudent = 0;
+    @Formula("(select count(*) from student  st where st.id_Group= id_Group)")
+    @Column(name = "`amount_student`", nullable = true)
+    private Integer amountStudent = 0;
 
 
 //    @JsonBackReference
@@ -85,13 +85,13 @@ public class Group {
     }
 
 
-//    public Integer getAmountStudent() {
-//        return amountStudent;
-//    }
-//
-//    public void setAmountStudent(Integer amountStudent) {
-//        this.amountStudent = amountStudent;
-//    }
+    public Integer getAmountStudent() {
+        return amountStudent;
+    }
+
+    public void setAmountStudent(Integer amountStudent) {
+        this.amountStudent = amountStudent;
+    }
 
 //    public SEC getSec() {
 //        return sec;

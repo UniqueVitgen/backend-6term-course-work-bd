@@ -20,7 +20,7 @@ public class GroupServiceImpl implements GroupService  {
 
     @Override
     public List<Group> findAllBySpecialization(Integer id_Specialization) {
-        return groupRepository.findAllBySpecializationId(id_Specialization);
+        return groupRepository.findAllBySpecializationIdSpecialization(id_Specialization);
     }
 
     @Override

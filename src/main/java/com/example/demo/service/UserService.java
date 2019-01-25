@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.entity.*;
+import com.example.demo.entity.form.UserUploadForm;
 //import org.springframework.security.core.userdetails.UserDetails;
 
 public interface UserService<T,IRepository> {
@@ -13,7 +14,11 @@ public interface UserService<T,IRepository> {
 
     public User findOne(Integer id);
 
-    public void save (T t);
+    User save(User user);
+
+    User editOrganizerRole(User user, boolean isOrganizer);
+
+    User uploadPhoto(Integer idPerson, String filename);
 
     public Lector saveLectorUniversity(LectorUniversity lector);
 

@@ -28,3 +28,5 @@ nbdist/
 *.pdf
 *.docx
 *.doc
+
+src/main/resources/images/

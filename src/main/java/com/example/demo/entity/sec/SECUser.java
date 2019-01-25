@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,7 +27,7 @@ public class SECUser {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "`sec_users_roles`",  joinColumns = @JoinColumn(name = "id_sec_user"),
             inverseJoinColumns = @JoinColumn(name = "id_sec_role"))
-    private Set<SECRole> roles = new HashSet<>();
+    private List<SECRole> roles = new ArrayList<>();
 
     @JsonIgnore
     @ManyToMany(mappedBy = "users",fetch = FetchType.EAGER)
@@ -51,11 +53,11 @@ public class SECUser {
         this.id = id;
     }
 
-    public Set<SECRole> getRoles() {
+    public List<SECRole> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<SECRole> roles) {
+    public void setRoles(List<SECRole> roles) {
         this.roles = roles;
     }
 

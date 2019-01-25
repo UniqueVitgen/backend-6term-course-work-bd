@@ -73,6 +73,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<SECUser> secUsers;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "`id_image`")
+    private ImageModelHasUser imageModel;
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -159,5 +163,13 @@ public class User {
 
     public void setMiddlenameInitial(String middlenameInitial) {
         this.middlenameInitial = middlenameInitial;
+    }
+
+    public ImageModelHasUser getImageModel() {
+        return imageModel;
+    }
+
+    public void setImageModel(ImageModelHasUser imageModel) {
+        this.imageModel = imageModel;
     }
 }

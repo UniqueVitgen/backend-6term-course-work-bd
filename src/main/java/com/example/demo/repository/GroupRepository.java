@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 public interface GroupRepository extends CrudRepository<Group, Integer> {
-    @Query(value = "select * from  diplom_work.group as sp where sp.id_specialization = :id", nativeQuery = true)
-    List<Group> findAllBySpecializationId(@Param("id") Integer id);
+//    @Query(value = "select * from  diplom_work.group as sp where sp.id_specialization = :id", nativeQuery = true)
+//    List<Group> findAllBySpecializationId(@Param("id") Integer id);
+
+    List<Group> findAllBySpecializationIdSpecialization(Integer id);
 
 //    List<Group> findAllBySecIn(List<SEC> secList);
 

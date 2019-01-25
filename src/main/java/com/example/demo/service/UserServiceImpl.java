@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.*;
+import com.example.demo.entity.form.UserUploadForm;
 import com.example.demo.repository.LectorRepository;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.repository.UserRepository;
@@ -35,6 +36,9 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
 
+    @Autowired
+    private ImageService imageService;
+
 
 
     @Autowired
@@ -58,8 +62,43 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     }
 
     @Override
-    public void save(Object o) {
+    public User save(User user) {
+        User savedUser = this.findOne(user.getIdPerson());
+        savedUser.setRoles(user.getRoles());
+        return userRepository.save(savedUser);
+    }
 
+    @Override
+    public User editOrganizerRole(User user, boolean isOrganizer) {
+        User savedUser = this.findOne(user.getIdPerson());
+        Role organizerRole = roleService.findByName("ORGANIZER");
+        if (isOrganizer) {
+            if(!savedUser.getRoles().contains(organizerRole)) {
+                savedUser.getRoles().add(organizerRole);
+            }
+        } else {
+            if(savedUser.getRoles().contains(organizerRole)) {
+                savedUser.getRoles().remove(organizerRole);
+            }
+        }
+        return userRepository.save(savedUser);
+    }
+
+    @Override
+    public User uploadPhoto(Integer idPerson, String filename) {
+        User user = userRepository.findById(idPerson).get();
+        if(filename != null && !filename.equals("")) {
+            ImageModel imageModel = imageService.findAllByFilename(filename).get(0);
+            ImageModelHasUser imageModelHasNews = imageService.saveHasUser(imageModel);
+            user.setImageModel(imageModelHasNews);
+        }
+//        User user = userRepository.findById(userUploadForm.getUser().getIdPerson()).get();
+//        if(userUploadForm.getFilename() != null && !userUploadForm.getFilename() .equals("")) {
+//            ImageModel imageModel = imageService.findAllByFilename(userUploadForm.getFilename()).get(0);
+//            ImageModelHasUser imageModelHasNews = imageService.saveHasUser(imageModel);
+//            user.setImageModel(imageModelHasNews);
+//        }
+        return userRepository.save(user);
     }
 
     @Override

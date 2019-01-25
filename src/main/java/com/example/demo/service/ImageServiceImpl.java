@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.ImageModel;
 import com.example.demo.entity.ImageModelHasNews;
+import com.example.demo.entity.ImageModelHasUser;
 import com.example.demo.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,19 @@ public class ImageServiceImpl implements ImageService {
         imageModelHasNews.setId(imageModel.getId());
         return imageRepository.save(imageModelHasNews);
 
+    }
+
+    @Override
+    public ImageModelHasUser saveHasUser(ImageModel imageModel) {
+        imageModel = imageRepository.save(imageModel);
+        ImageModelHasUser imageModelHasNews = new ImageModelHasUser();
+        imageModelHasNews.setContent(imageModel.getContent());
+        imageModelHasNews.setContentType(imageModel.getContentType());
+        imageModelHasNews.setCreated(imageModel.getCreated());
+        imageModelHasNews.setFilename(imageModel.getFilename());
+        imageModelHasNews.setDescription(imageModel.getDescription());
+        imageModelHasNews.setId(imageModel.getId());
+        return imageRepository.save(imageModelHasNews);
     }
 
     @Override
