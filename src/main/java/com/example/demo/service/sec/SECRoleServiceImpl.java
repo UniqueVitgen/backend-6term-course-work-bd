@@ -23,6 +23,11 @@ public class SECRoleServiceImpl implements SECRoleService {
     }
 
     @Override
+    public SECRole findByName(String name) {
+        return secRoleRepository.findByName(name).get();
+    }
+
+    @Override
     public SECRole save(SECRole secRole) {
         return secRoleRepository.save(secRole);
     }

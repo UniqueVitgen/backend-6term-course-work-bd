@@ -27,6 +27,6 @@ nbdist/
 ### files ###
 *.pdf
 *.docx
-*.doc
+*.docmmi
 
 src/main/resources/images/

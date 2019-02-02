@@ -34,6 +34,9 @@ public class Specialization {
     @JoinColumn(name = "`id_Department`")
     private Department department;
 
+    @Column(name = "`disabled_edit_diplom_work`")
+    private Boolean disabledEditDiplomWork;
+
     @JsonIgnore
     @OneToMany(mappedBy = "specialization", cascade = CascadeType.ALL)
     private Set<Group> groups;
@@ -101,6 +104,14 @@ public class Specialization {
 
     public void setSecs(Set<SEC> secs) {
         this.secs = secs;
+    }
+
+    public Boolean getDisabledEditDiplomWork() {
+        return disabledEditDiplomWork;
+    }
+
+    public void setDisabledEditDiplomWork(Boolean disabledEditDiplomWork) {
+        this.disabledEditDiplomWork = disabledEditDiplomWork;
     }
 
     //    public Department getDepartment() {

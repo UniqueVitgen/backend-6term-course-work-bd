@@ -494,6 +494,16 @@ public class WordServiceImpl implements WordService {
         return p;
     }
 
+    @Override
+    public P createParagraph(List<R> rs) {
+        ObjectFactory factory = Context.getWmlObjectFactory();
+        P p = factory.createP();
+        for(R r: rs) {
+            p.getContent().add(r);
+        }
+        return p;
+    }
+
     public P createParagraph(String text, RPr rpr) {
         ObjectFactory factory = Context.getWmlObjectFactory();
 
@@ -539,5 +549,12 @@ public class WordServiceImpl implements WordService {
         underline.setVal(UnderlineEnumeration.SINGLE);
         return underline;
 //        rPr.setU(underline);
+    }
+
+    @Override
+    public BooleanDefaultTrue createBold() {
+        BooleanDefaultTrue booleanDefaultTrue = new BooleanDefaultTrue();
+        booleanDefaultTrue.setVal(true);
+        return booleanDefaultTrue;
     }
 }

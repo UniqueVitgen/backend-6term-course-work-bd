@@ -12,7 +12,10 @@ public interface SECUserService {
 
     SECUser save(SECUser secUser);
 
-    SECUser edit(SECUser secUser);
+    SECUser edit(SECUser secUser);;
+
+    public String formatFullName(SECUser user);
+
 
     void delete(SECUser secUser);
 

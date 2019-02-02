@@ -10,6 +10,8 @@ public interface SECRoleService {
 
     SECRole findById(Integer id);
 
+    SECRole findByName(String name);
+
     SECRole save(SECRole secRole);
 
     SECRole edit(SECRole secRole);

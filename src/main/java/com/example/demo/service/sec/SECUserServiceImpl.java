@@ -52,6 +52,27 @@ public class SECUserServiceImpl implements SECUserService {
     }
 
     @Override
+    public String formatFullName(SECUser user) {
+        String fullname = "";
+        if (!user.getLastname().equals("")) {
+            fullname += user.getLastname();
+        }
+        if (!user.getFirstname().equals("")) {
+            if (!fullname.equals("")) {
+                fullname += " ";
+            }
+            fullname += user.getFirstname();
+        }
+        if (!user.getMiddlename().equals("")) {
+            if (!fullname.equals("")) {
+                fullname += " ";
+            }
+            fullname += user.getMiddlename();
+        }
+        return fullname;
+    }
+
+    @Override
     public void delete(SECUser secUser) {
         if(secUser.getRoles().get(0).getName().equals("SECRETARY")) {
             Role role = roleService.findByName("SECRETARY_SEC");

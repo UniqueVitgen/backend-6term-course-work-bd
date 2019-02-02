@@ -22,7 +22,7 @@ public class Department {
 
     @JsonIgnore
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<SEC> secs;
+    private Set<SEC> secs;
 
     @JsonIgnore
     @OneToOne(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -42,6 +42,9 @@ public class Department {
     @ManyToOne
     @JoinColumn(name = "`id_Faculty`")
     private Faculty faculty;
+
+    @Column(name = "`disabled_edit_sec`")
+    private Boolean disabledEditSec;
 
     public Integer getId() {
         return id;
@@ -91,11 +94,19 @@ public class Department {
         this.lector = lector;
     }
 
-    public List<SEC> getSecs() {
+    public Set<SEC> getSecs() {
         return secs;
     }
 
-    public void setSecs(List<SEC> secs) {
+    public void setSecs(Set<SEC> secs) {
         this.secs = secs;
+    }
+
+    public Boolean getDisabledEditSec() {
+        return disabledEditSec;
+    }
+
+    public void setDisabledEditSec(Boolean disabledEditSec) {
+        this.disabledEditSec = disabledEditSec;
     }
 }
