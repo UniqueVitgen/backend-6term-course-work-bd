@@ -1,8 +1,10 @@
 package com.example.demo.entity.sec;
 
 import com.example.demo.entity.DiplomWork;
+import com.example.demo.entity.Group;
 import com.example.demo.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,6 +21,11 @@ public class SECUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id_sec_user")
     private Integer id;
+
+    @Formula("(select sr.priority from sec_role sr where sr.id_role in \n" +
+            "            (select sur.id_sec_role from  sec_users_roles sur where sur.id_sec_user = id_sec_user)\n" +
+            "            order by sr.priority asc limit 1)")
+    private Integer priority;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "`id_Person`")
@@ -44,6 +51,9 @@ public class SECUser {
     @NotNull
     @Column(nullable=false)
     protected String lastname;
+
+    @Formula("concat(lastname, \" \", firstname, \" \", middlename)")
+    protected String fullname;
 
     public Integer getId() {
         return id;
@@ -99,5 +109,13 @@ public class SECUser {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 }

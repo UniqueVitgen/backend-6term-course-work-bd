@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.entity.*;
 import com.example.demo.entity.form.UserUploadForm;
 import com.example.demo.repository.LectorRepository;
+import com.example.demo.repository.PostOrganizationRepository;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,11 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private PostOrganizationService postOrganizationService;
 
+    @Autowired
+    private OrganizationService organizationService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -85,6 +90,14 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     }
 
     @Override
+    public User editPassword(User user, String password) {
+        User savedUser = this.findOne(user.getIdPerson());
+        savedUser.setPassword(bcryptEncoder.encode(password));
+        return save(savedUser);
+
+    }
+
+    @Override
     public User uploadPhoto(Integer idPerson, String filename) {
         User user = userRepository.findById(idPerson).get();
         if(filename != null && !filename.equals("")) {
@@ -92,12 +105,6 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
             ImageModelHasUser imageModelHasNews = imageService.saveHasUser(imageModel);
             user.setImageModel(imageModelHasNews);
         }
-//        User user = userRepository.findById(userUploadForm.getUser().getIdPerson()).get();
-//        if(userUploadForm.getFilename() != null && !userUploadForm.getFilename() .equals("")) {
-//            ImageModel imageModel = imageService.findAllByFilename(userUploadForm.getFilename()).get(0);
-//            ImageModelHasUser imageModelHasNews = imageService.saveHasUser(imageModel);
-//            user.setImageModel(imageModelHasNews);
-//        }
         return userRepository.save(user);
     }
 
@@ -105,9 +112,6 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     public Lector saveLectorUniversity(LectorUniversity lector) {
         User newUser = new User();
         Set<Role> roles = new HashSet<>();
-//        Role role = new Role();
-//        role.setName("LECTOR");
-//        roles.add(role);
         roles.add(roleService.findByName("LECTOR"));
         newUser.setRoles(roles);
         newUser.setUsername(lector.getUsername());
@@ -132,21 +136,16 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
         newLector.setPost(lector.getPost());
         newLector.setDegree(lector.getDegree());
 
-        //newLector.setTitle(lector.getTitle());
         return lectorRepository.save(newLector);
     }
 
     @Override
     public Lector saveLectorOrganizer(LectorOrganization lectorOrganization) {
         Set<Role> roles = new HashSet<>();
-//        Role role = new Role();
-//        role.setName("LECTOR");
-//        roles.add(role);
         roles.add(roleService.findByName("LECTOR"));
 
 
         LectorOrganization newLector = new LectorOrganization();
-//        newLector.setFree(true);
         newLector.setMaxCountOfDiplom(7);
         newLector.setRoles(roles);
         newLector.setUsername(lectorOrganization.getUsername());
@@ -154,9 +153,8 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
         newLector.setMiddlename(lectorOrganization.getMiddlename());
         newLector.setLastname(lectorOrganization.getLastname());
         newLector.setPassword(bcryptEncoder.encode(lectorOrganization.getPassword()));
-        newLector.setPostOrganization(lectorOrganization.getPostOrganization());
-        newLector.setOrganization(lectorOrganization.getOrganization());
-        //newLector.setTitle(lector.getTitle());
+        newLector.setPostOrganization(postOrganizationService.findOrCreatePostOrganization(lectorOrganization.getPostOrganization()));
+        newLector.setOrganization(organizationService.findOrCreate(lectorOrganization.getOrganization()));
         return lectorRepository.save(newLector);
     }
 
@@ -164,9 +162,6 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     public Student saveStudent(Student student) {
         Student newStudent = new Student();
         Set<Role> roles = new HashSet<>();
-//        Role role = new Role();
-//        role.setName("STUDENT");
-//        roles.add(role);
         roles.add(roleService.findByName("STUDENT"));
         newStudent.setRoles(roles);
         newStudent.setUsername(student.getUsername());
@@ -249,6 +244,16 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
             fullname += user.getMiddlenameInitial() + ".";
         }
         return fullname;
+    }
+
+    @Override
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
+
+    @Override
+    public void delete(Integer idUser) {
+        userRepository.deleteByIdPerson(idUser);
     }
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {

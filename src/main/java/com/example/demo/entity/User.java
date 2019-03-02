@@ -52,6 +52,9 @@ public class User {
     @Column(nullable=false)
     protected String lastname;
 
+    @Formula("concat(lastname, \" \", firstname, \" \", middlename)")
+    protected String fullname;
+
     @NotNull
     @Column(unique=true, nullable = false)
     protected String username;
@@ -171,5 +174,13 @@ public class User {
 
     public void setImageModel(ImageModelHasUser imageModel) {
         this.imageModel = imageModel;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 }

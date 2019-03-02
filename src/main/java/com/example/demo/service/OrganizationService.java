@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface OrganizationService {
     List<Organization> getAll();
+
+    Organization findOrCreate(Organization organization);
 }

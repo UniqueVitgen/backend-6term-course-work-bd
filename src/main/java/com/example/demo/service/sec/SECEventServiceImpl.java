@@ -35,14 +35,17 @@ public class SECEventServiceImpl implements SECEventService {
         secEvent.setAddress(sec.getAddress());
         secEvent.setSec(sec.getSec());
         secEvent.setDate(sec.getDate());
+        secEvent.setEndDate(sec.getEndDate());
         return secRepository.save(secEvent);
     }
 
     @Override
     public SECEvent edit(SECEvent sec) {
         SECEvent secEvent = secRepository.findById(sec.getId()).get();
+        secEvent.setGroups(sec.getGroups());
         secEvent.setDate(sec.getDate());
         secEvent.setAddress(sec.getAddress());
+        secEvent.setEndDate(sec.getEndDate());
         return secRepository.save(secEvent);
     }
 
@@ -52,6 +55,7 @@ public class SECEventServiceImpl implements SECEventService {
         secEvent.setId(sec.getId());
         secEvent.setAddress(sec.getAddress());
         secEvent.setDate(sec.getDate());
+        secEvent.setEndDate(sec.getEndDate());
         return secRepository.save(secEvent);
     }
 

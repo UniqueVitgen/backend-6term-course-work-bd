@@ -29,6 +29,11 @@ public class GroupServiceImpl implements GroupService  {
     }
 
     @Override
+    public List<Group> findAllBySpecializationIds(List<Integer> specializationIds) {
+        return groupRepository.findAllBySpecializationIdSpecializationIn(specializationIds);
+    }
+
+    @Override
     public Group save(Group group) {
         return groupRepository.save(group);
     }

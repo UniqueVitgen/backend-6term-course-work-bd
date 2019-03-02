@@ -21,6 +21,8 @@ public interface GroupService {
 
     List<Group> findAll();
 
+    List<Group> findAllBySpecializationIds(List<Integer> specializationIds);
+
     Group save(Group group);
 
     Group Edit(Group group);

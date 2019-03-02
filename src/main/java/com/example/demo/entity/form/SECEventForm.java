@@ -10,6 +10,7 @@ public class SECEventForm {
 
     private Date date;
 
+    private Date endDate;
 
     private SEC sec;
 
@@ -45,5 +46,13 @@ public class SECEventForm {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

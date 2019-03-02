@@ -18,6 +18,8 @@ public interface UserService<T,IRepository> {
 
     User editOrganizerRole(User user, boolean isOrganizer);
 
+    User editPassword(User user, String password);
+
     User uploadPhoto(Integer idPerson, String filename);
 
     public Lector saveLectorUniversity(LectorUniversity lector);
@@ -33,4 +35,8 @@ public interface UserService<T,IRepository> {
     public String formatFullName(User user);
 
     public String formatSurnameWithInitials(User user);
+
+    void delete(User user);
+
+    void delete(Integer idUser);
 }

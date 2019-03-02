@@ -21,17 +21,18 @@ public class SEC {
     @Column(name = "`id_sec`")
     private Integer id;
 
+    @NotNull
+    @Column(name = "`number`")
+    private Integer number;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "`id_Department`")
     private Department department;
 
-//    @One
-//    private List<Department> departments
-
     @OneToMany(mappedBy = "sec", cascade = CascadeType.ALL)
     private Set<SECEvent> events;
 
+    @OrderBy("priority ASC, fullname ASC")
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "`sec_users_secs`", joinColumns = @JoinColumn(name = "id_sec"),
             inverseJoinColumns = @JoinColumn(name = "id_sec_user"))
@@ -41,6 +42,11 @@ public class SEC {
     @JoinTable(name = "`secs_specializations`", joinColumns = @JoinColumn(name = "id_sec"),
             inverseJoinColumns = @JoinColumn(name = "`id_Specialization`"))
     private Set<Specialization> specializations;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "`secs_groups`", joinColumns = @JoinColumn(name = "id_sec"),
+            inverseJoinColumns = @JoinColumn(name = "`id_Group`"))
+    private Set<Group> groups;
 
     @NotNull
     @Column(name="`start_date`")
@@ -105,5 +111,21 @@ public class SEC {
 
     public void setSpecializations(Set<Specialization> specializations) {
         this.specializations = specializations;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
 }

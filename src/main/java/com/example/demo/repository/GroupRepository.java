@@ -16,6 +16,10 @@ public interface GroupRepository extends CrudRepository<Group, Integer> {
 
     List<Group> findAllBySpecializationIdSpecialization(Integer id);
 
+    List<Group> findAllBySpecializationIn(List<Specialization> specializations);
+
+    List<Group> findAllBySpecializationIdSpecializationIn(List<Integer> specializationsIds);
+
 //    List<Group> findAllBySecIn(List<SEC> secList);
 
 //    List<Group> findAllBySec(SEC sec);

@@ -1,10 +1,12 @@
 package com.example.demo.entity.sec;
 
+import com.example.demo.entity.Group;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "`sec_event`")
@@ -19,6 +21,8 @@ public class SECEvent {
     @Column(name="`date`")
     private Date date;
 
+    @Column(name = "`end_date`")
+    private Date endDate;
 
     @JsonIgnore
     @ManyToOne
@@ -28,6 +32,11 @@ public class SECEvent {
     @NotNull
     @Column(name="address")
     private String address;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "`sec_events_groups`", joinColumns = @JoinColumn(name = "id_sec_event"),
+            inverseJoinColumns = @JoinColumn(name = "`id_Group`"))
+    private Set<Group> groups;
 
     public Integer getId() {
         return id;
@@ -59,5 +68,21 @@ public class SECEvent {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
 }

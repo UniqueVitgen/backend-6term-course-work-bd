@@ -56,8 +56,15 @@ public class SECServiceImpl implements SECService {
 
     @Override
     public SEC edit(SEC sec) {
-        sec = updateGroups(sec);
-        return sec;
+        SEC editedSEC = secRepository.findById(sec.getId()).get();
+        editedSEC.setDepartment(sec.getDepartment());
+        editedSEC.setSpecializations(sec.getSpecializations());
+        editedSEC.setGroups(sec.getGroups());
+        editedSEC.setEndDate(sec.getEndDate());
+        editedSEC.setNumber(sec.getNumber());
+        editedSEC.setStartDate(sec.getStartDate());
+        editedSEC.setUsers(sec.getUsers());
+        return secRepository.save(editedSEC);
     }
 
     @Override

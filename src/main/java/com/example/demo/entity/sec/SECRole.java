@@ -19,6 +19,10 @@ public class SECRole {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @NotNull
+    @Column(name = "priority", nullable = false, unique = true)
+    private String priority;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
     private Set<SECUser> users;
@@ -45,5 +49,13 @@ public class SECRole {
 
     public void setUsers(Set<SECUser> users) {
         this.users = users;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 }

@@ -1,10 +1,10 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.sec.SEC;
+import com.example.demo.entity.sec.SECEvent;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sun.deploy.panel.SpecialTreeListener;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
@@ -26,6 +26,14 @@ public class Group {
     @Formula("(select count(*) from student  st where st.id_Group= id_Group)")
     @Column(name = "`amount_student`", nullable = true)
     private Integer amountStudent = 0;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "groups",fetch = FetchType.EAGER)
+    private Set<SEC> secs;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "groups",fetch = FetchType.EAGER)
+    private Set<SECEvent> secEvents;
 
 
 //    @JsonBackReference
@@ -93,7 +101,23 @@ public class Group {
         this.amountStudent = amountStudent;
     }
 
-//    public SEC getSec() {
+    public Set<SEC> getSecs() {
+        return secs;
+    }
+
+    public void setSecs(Set<SEC> secs) {
+        this.secs = secs;
+    }
+
+    public Set<SECEvent> getSecEvents() {
+        return secEvents;
+    }
+
+    public void setSecEvents(Set<SECEvent> secEvents) {
+        this.secEvents = secEvents;
+    }
+
+    //    public SEC getSec() {
 //        return sec;
 //    }
 //

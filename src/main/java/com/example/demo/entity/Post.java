@@ -11,10 +11,11 @@ import java.util.Set;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Post")
+    @Column(name = "id_Post", unique = true)
     private Integer idPost;
 
     @NotNull
+    @Column(unique = true)
     private String name;
 
     @JsonIgnore

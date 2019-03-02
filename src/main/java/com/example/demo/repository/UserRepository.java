@@ -13,4 +13,6 @@ public interface UserRepository extends UserBaseRepository<User>  {
 
     @Override
     List<User> findAll();
+
+    void deleteByIdPerson(Integer idPerson);
 }

@@ -23,9 +23,11 @@ public class LectorServiceImpl implements LectorService {
   }
 
   @Override
-  public List<Lector> findAllBySecUserIdIsNotInOrSecUserNull(List<Integer> ids) {
-    List<SECUser> secUsers = secUserRepository.findAllById(ids);
-    return lectorRepository.findAllBySecUsersIsNotContaining(secUsers);
+  public List<Lector> findAllBySecUserIdIsNotInOrSecUserNull(List<Integer> secUsersIds) {
+//    List<SECUser> secUsers = secUserRepository.findAllByIdIsIn(ids);
+//    lectorRepository.findIdsBySecUsersIdsNotIn(secUsersIds);
+    List<Integer> lectorsIds = lectorRepository.findIdsBySecUsersIdsNotIn(secUsersIds);
+    return lectorRepository.findAllByIdPersonIn(lectorsIds);
   }
 
   @Override

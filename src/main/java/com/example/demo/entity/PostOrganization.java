@@ -16,10 +16,11 @@ public class PostOrganization {
     private Integer id;
 
     @NotNull
+    @Column(unique = true)
     private String name;
 
     @NotNull
-    @Column(name = "short_name")
+    @Column(name = "short_name", unique = true)
     private String shortName;
 
     @JsonIgnore

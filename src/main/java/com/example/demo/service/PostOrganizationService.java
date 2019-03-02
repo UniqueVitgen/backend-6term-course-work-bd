@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PostOrganizationService {
     List<PostOrganization> getAll();
+
+    PostOrganization findOrCreatePostOrganization(PostOrganization postOrganization);
 }

@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.Lector;
+import com.example.demo.entity.sec.SEC;
 import com.example.demo.entity.sec.SECUser;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -57,6 +58,23 @@ public interface LectorRepository extends UserBaseRepository<Lector> {
 //  List<Lector> findAllBySecUserIdIsNullOrSecUserIdIsNotIn(List<Integer> ids);
 
   List<Lector> findAllBySecUsersIsNotContaining(List<SECUser> secUsers);
+
+  List<Lector> findAllBySecUsersNotContaining(List<SECUser> secUsers);
+
+  List<Lector> findAllBySecUsersIsNotIn(List<SECUser> secUsers);
+
+  List<Lector> findAllBySecUsersNotIn(List<SECUser> secUsers);
+  List<Lector> findAllBySecUsersIdNotIn(List<Integer> ids);
+
+  List<Lector> findAllBySecUsersNotContains(List<SECUser> secUsers);
+
+  @Query(value = "select * from lector where id_person not in " +
+          "(SELECT distinct lector.id_Person FROM diplom_work.lector left join sec_user \n" +
+          "on lector.id_person = sec_user.id_Person \n" +
+          "where sec_user.id_sec_user in (:secUsersIds)) ;", nativeQuery = true)
+  List<Integer> findIdsBySecUsersIdsNotIn(@Param("secUsersIds")List<Integer> ids);
+
+  List<Lector> findAllByIdPersonIn(List<Integer> ids);
 
   Optional<Lector> findByUsername(String username);
 }

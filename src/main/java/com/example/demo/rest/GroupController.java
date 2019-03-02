@@ -12,6 +12,7 @@ import com.example.demo.service.files.WordGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping("/group")
@@ -58,6 +61,14 @@ public class GroupController {
     public @ResponseBody
     Group group(@PathVariable("id") Integer id) {
         return groupService.get(id);
+    }
+
+
+    @RequestMapping(value = "/get-by-specializations", method = GET, consumes = "application/json; charset=UTF-8")
+    public @ResponseBody
+    List<Group> getSpecializationByFaculty(@RequestParam("ids") List<Integer> ids) {
+        List<Group> groups = groupService.findAllBySpecializationIds(ids);
+        return groups;
     }
 
 

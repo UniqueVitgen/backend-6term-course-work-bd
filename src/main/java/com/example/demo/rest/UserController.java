@@ -8,6 +8,7 @@ import com.example.demo.service.LectorService;
 import com.example.demo.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,5 +55,21 @@ public class UserController {
     @RequestMapping(value = "/update-user-organizer-role-{isOrganizer}", method = PUT)
     public User updateUserOrganizer(@RequestBody User user, @PathVariable("isOrganizer") Boolean isOrganizer) {
         return userService.editOrganizerRole(user, isOrganizer);
+    }
+
+    @RequestMapping(value = "/update-user-password-{password}", method = PUT)
+    public User updatePassword(@RequestBody User user, @PathVariable("password") String password) {
+        return userService.editPassword(user, password);
+    }
+
+    @RequestMapping(value = "/delete-{idUser}", method = DELETE)
+    public ResponseEntity deleteUser(@PathVariable("idUser") Integer idUser) {
+        try {
+            userService.delete(idUser);
+            return org.springframework.http.ResponseEntity.noContent().build();
+        }
+        catch (Exception e) {
+            return org.springframework.http.ResponseEntity.notFound().build();
+        }
     }
 }
