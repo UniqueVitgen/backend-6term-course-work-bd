@@ -7,8 +7,11 @@ import com.example.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -32,6 +35,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Set<Student> findAll(Set<Student> students) {
+        List<Integer> ids = students.stream().map(student -> student.getIdPerson()).collect(Collectors.toList());
+        return new HashSet<>(studentRepository.findAllByIdPersonIn(ids));
+    }
+
+    @Override
     public List<Student> findAllByGroup(Group group) {
         return studentRepository.findAllByGroup(group);
     }
@@ -40,5 +49,10 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> findAllByGroupId(Integer idGroup) {
         Group group = groupService.get(idGroup);
         return findAllByGroup(group);
+    }
+
+    @Override
+    public List<Student> findAllByGroupIdIn(List<Integer> groupsIds) {
+        return studentRepository.findAllByGroupIdGroupIn(groupsIds);
     }
 }

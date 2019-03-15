@@ -3,6 +3,7 @@ package com.example.demo.service.sec;
 import com.example.demo.entity.form.SECEventForm;
 import com.example.demo.entity.sec.SECEvent;
 import com.example.demo.repository.sec.SECEventRepository;
+import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import java.util.List;
 public class SECEventServiceImpl implements SECEventService {
     @Autowired
     private SECEventRepository secRepository;
+    @Autowired
+    private StudentService studentService;
 
     @Override
     public List<SECEvent> findAll() {
@@ -36,16 +39,19 @@ public class SECEventServiceImpl implements SECEventService {
         secEvent.setSec(sec.getSec());
         secEvent.setDate(sec.getDate());
         secEvent.setEndDate(sec.getEndDate());
+        secEvent.setGroups(sec.getGroups());
+        secEvent.setStudents(studentService.findAll(sec.getStudents()));
         return secRepository.save(secEvent);
     }
 
     @Override
     public SECEvent edit(SECEvent sec) {
         SECEvent secEvent = secRepository.findById(sec.getId()).get();
-        secEvent.setGroups(sec.getGroups());
         secEvent.setDate(sec.getDate());
         secEvent.setAddress(sec.getAddress());
         secEvent.setEndDate(sec.getEndDate());
+        secEvent.setGroups(sec.getGroups());
+        secEvent.setStudents(studentService.findAll(sec.getStudents()));
         return secRepository.save(secEvent);
     }
 
@@ -56,6 +62,8 @@ public class SECEventServiceImpl implements SECEventService {
         secEvent.setAddress(sec.getAddress());
         secEvent.setDate(sec.getDate());
         secEvent.setEndDate(sec.getEndDate());
+        secEvent.setGroups(sec.getGroups());
+        secEvent.setStudents(studentService.findAll(sec.getStudents()));
         return secRepository.save(secEvent);
     }
 

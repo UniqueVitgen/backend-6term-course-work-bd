@@ -37,4 +37,8 @@ public interface StudentRepository extends UserBaseRepository<Student> {
     Optional<Student> findById(Integer integer);
 
     List<Student> findAllByGroup(Group group);
+
+    List<Student> findAllByGroupIdGroupIn(List<Integer> groupIds);
+
+    List<Student> findAllByIdPersonIn(List<Integer> studentsIds);
 }

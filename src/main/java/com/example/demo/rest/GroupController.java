@@ -151,6 +151,13 @@ public class GroupController {
         return studentService.findAllByGroupId(id);
     }
 
+    @RequestMapping(value = "/find-all-students-by-groups")
+    public @ResponseBody
+    List<Student>
+    findStudentListByGroupList(@RequestParam("idGroup") List<Integer> groupsIds) {
+        return studentService.findAllByGroupIdIn(groupsIds);
+    }
+
 //    @RequestMapping(value="/find-all-by-sec", method = RequestMethod.GET)
 //    public @ResponseBody
 //    List<Group> findBySecs(@RequestParam("secIds") List<Integer> secIds) {

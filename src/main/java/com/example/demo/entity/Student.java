@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
-import com.example.demo.entity.User;
+
+import com.example.demo.entity.sec.SEC;
+import com.example.demo.entity.sec.SECEvent;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -23,14 +25,6 @@ import java.util.Set;
 })
 public class Student extends User  {
 
-//    @Column(name = "`group`", nullable = false)
-//    private String group;
-
-
-//    @ManyToOne
-//    @JoinColumn(name = "id_Specialization", insertable = false, updatable = false)
-//    private Specialization specialization;
-
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_Group")
@@ -39,6 +33,12 @@ public class Student extends User  {
     @JsonIgnore
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private DiplomWork diplomWork;
+
+//    @JsonIgnore
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id_sec_event")
+//    private SECEvent secEvent;
+
 
     public Student() {
 
@@ -60,11 +60,11 @@ public class Student extends User  {
         this.diplomWork = diplomWork;
     }
 
-    //    public String getGroup() {
-//        return group;
+//    public SECEvent getSecEvent() {
+//        return secEvent;
 //    }
 //
-//    public void setGroup(String group) {
-//        this.group = group;
+//    public void setSecEvent(SECEvent secEvent) {
+//        this.secEvent = secEvent;
 //    }
 }

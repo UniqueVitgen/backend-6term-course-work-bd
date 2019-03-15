@@ -1,6 +1,7 @@
 package com.example.demo.entity.sec;
 
 import com.example.demo.entity.Group;
+import com.example.demo.entity.Student;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -32,6 +33,9 @@ public class SECEvent {
     @NotNull
     @Column(name="address")
     private String address;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Student> students;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "`sec_events_groups`", joinColumns = @JoinColumn(name = "id_sec_event"),
@@ -84,5 +88,13 @@ public class SECEvent {
 
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }

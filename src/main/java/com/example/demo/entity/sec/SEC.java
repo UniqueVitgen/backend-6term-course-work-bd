@@ -3,6 +3,7 @@ package com.example.demo.entity.sec;
 import com.example.demo.entity.Department;
 import com.example.demo.entity.Group;
 import com.example.demo.entity.Specialization;
+import com.example.demo.entity.Student;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
