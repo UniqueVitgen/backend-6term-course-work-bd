@@ -97,7 +97,7 @@ public class PDFServiceImpl implements PDFService {
         Font fontRuTitle = new Font(bf, 16);
         Font fontRu = new Font(bf, 16);
         try {
-            if(diplomWork.getPercentages().size() > 0) {
+            if(diplomWork.getStudent().getSecEvent().getSec().getPercentages().size() > 0) {
 
                 Paragraph paragraph = new Paragraph();
                 Chunk forTable1 = new Chunk("Таблица процентовок", fontRu);
@@ -127,7 +127,7 @@ public class PDFServiceImpl implements PDFService {
                 hcell.setHorizontalAlignment(ALIGN_CENTER);
                 table.addCell(hcell);
 
-                for(Percentage percentage: diplomWork.getPercentages()) {
+                for(Percentage percentage: diplomWork.getStudent().getSecEvent().getSec().getPercentages()) {
 
 
                     PdfPCell cell;
@@ -143,7 +143,7 @@ public class PDFServiceImpl implements PDFService {
                     cell.setHorizontalAlignment(ALIGN_CENTER);
                     table.addCell(cell);
 
-                    cell = new PdfPCell(new Phrase(String.valueOf(percentage.getPercent()), fontRu));
+                    cell = new PdfPCell(new Phrase(String.valueOf(percentage.getPlanPercent()), fontRu));
                     cell.setVerticalAlignment(ALIGN_MIDDLE);
                     cell.setHorizontalAlignment(ALIGN_CENTER);
                     cell.setPaddingRight(5);

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GroupServiceImpl implements GroupService  {
@@ -27,6 +29,12 @@ public class GroupServiceImpl implements GroupService  {
     public List<Group> findAll() {
         return groupRepository.findAll();
     }
+
+//    @Override
+//    public List<Group> findAll(List<Group> groups) {
+//        List<Integer> ids = groups.stream().map(student -> student.getIdPerson()).collect(Collectors.toList());
+//        return new HashSet<>(studentRepository.findAllByIdPersonIn(ids));
+//    }
 
     @Override
     public List<Group> findAllBySpecializationIds(List<Integer> specializationIds) {

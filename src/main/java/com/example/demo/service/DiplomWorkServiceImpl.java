@@ -52,6 +52,7 @@ public class DiplomWorkServiceImpl implements DiplomWorkService{
 //        diplomWorkRepository.flush()
         editedDiplomWork.setName(diplomWork.getName());
         editedDiplomWork.setStatus(diplomWork.getStatus());
+        editedDiplomWork.setMark(diplomWork.getMark());
         editedDiplomWork.setLeader(lectorService.findByUsername(diplomWork.getLeader().getUsername()));
         editedDiplomWork.setComment(diplomWork.getComment());
         if(diplomWork.getTeoConsultor() != null) {

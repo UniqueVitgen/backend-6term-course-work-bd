@@ -34,10 +34,10 @@ public class PercentageController {
         return percentageService.findAll();
     }
 
-    @RequestMapping(value = "/get-by-diplom-work/{id-faculty}", method = RequestMethod.GET, consumes = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/get-by-sec/{id-sec}", method = RequestMethod.GET, consumes = "application/json; charset=UTF-8")
     public @ResponseBody
-    List<Percentage> getPercentagesByDiplomWork(@PathVariable("id-diplom-work") Integer id) {
-        List<Percentage> percentages = percentageService.findAllByDiplomWork(id);
+    List<Percentage> getPercentagesByDiplomWork(@PathVariable("id-sec") Integer id) {
+        List<Percentage> percentages = percentageService.findAllBySEC(id);
         return percentages;
     }
 

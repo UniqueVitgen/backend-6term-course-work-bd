@@ -35,9 +35,10 @@ public class SECEvent {
     private String address;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="sec_event_id")
     private Set<Student> students;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "`sec_events_groups`", joinColumns = @JoinColumn(name = "id_sec_event"),
             inverseJoinColumns = @JoinColumn(name = "`id_Group`"))
     private Set<Group> groups;

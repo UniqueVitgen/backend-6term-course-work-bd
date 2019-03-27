@@ -26,7 +26,7 @@ import java.util.Set;
 public class Student extends User  {
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_Group")
     private Group group;
 
@@ -34,10 +34,10 @@ public class Student extends User  {
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private DiplomWork diplomWork;
 
-//    @JsonIgnore
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id_sec_event")
-//    private SECEvent secEvent;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="sec_event_id", insertable = false, updatable = false)
+    private SECEvent secEvent;
 
 
     public Student() {
@@ -60,11 +60,11 @@ public class Student extends User  {
         this.diplomWork = diplomWork;
     }
 
-//    public SECEvent getSecEvent() {
-//        return secEvent;
-//    }
-//
-//    public void setSecEvent(SECEvent secEvent) {
-//        this.secEvent = secEvent;
-//    }
+    public SECEvent getSecEvent() {
+        return secEvent;
+    }
+
+    public void setSecEvent(SECEvent secEvent) {
+        this.secEvent = secEvent;
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.sec.SEC;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -36,13 +37,16 @@ public class Percentage {
     private Date endDate;
 
     @NotNull
-    @Column(name = "`percent`")
-    private Integer percent;
+    @Column(name = "`plan_percent`")
+    private Integer planPercent;
+
+    @Column(name = "`fact_percent`")
+    private Integer factPercent;
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "`id_Diplom_work`")
-    private DiplomWork diplomWork;
+    @JoinColumn(name = "`id_sec`")
+    private SEC sec;
 
     public void setId(Integer id) {
         this.id = id;
@@ -80,19 +84,27 @@ public class Percentage {
         this.endDate = endDate;
     }
 
-    public Integer getPercent() {
-        return percent;
+    public Integer getPlanPercent() {
+        return planPercent;
     }
 
-    public void setPercent(Integer percent) {
-        this.percent = percent;
+    public void setPlanPercent(Integer planPercent) {
+        this.planPercent = planPercent;
     }
 
-    public DiplomWork getDiplomWork() {
-        return diplomWork;
+    public Integer getFactPercent() {
+        return factPercent;
     }
 
-    public void setDiplomWork(DiplomWork diplomWork) {
-        this.diplomWork = diplomWork;
+    public void setFactPercent(Integer factPercent) {
+        this.factPercent = factPercent;
+    }
+
+    public SEC getSec() {
+        return sec;
+    }
+
+    public void setSec(SEC sec) {
+        this.sec = sec;
     }
 }

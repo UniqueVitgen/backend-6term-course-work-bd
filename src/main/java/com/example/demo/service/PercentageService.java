@@ -3,14 +3,15 @@ package com.example.demo.service;
 import com.example.demo.entity.DiplomWork;
 import com.example.demo.entity.Percentage;
 import com.example.demo.entity.form.PercentageForm;
+import com.example.demo.entity.sec.SEC;
 
 import java.util.List;
 
 public interface PercentageService {
 
-    List<Percentage> findAllByDiplomWork(DiplomWork diplomWork);
+    List<Percentage> findAllBySEC(SEC sec);
 
-    List<Percentage> findAllByDiplomWork(Integer id);
+    List<Percentage> findAllBySEC(Integer idSec);
 
     List<Percentage> findAll();
 

@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.entity.DiplomWork;
 import com.example.demo.entity.Percentage;
 import com.example.demo.entity.form.PercentageForm;
+import com.example.demo.entity.sec.SEC;
 import com.example.demo.repository.PercentageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,13 @@ public class PercentageServiceImpl implements PercentageService {
     private PercentageRepository percentageRepository;
 
     @Override
-    public List<Percentage> findAllByDiplomWork(DiplomWork diplomWork) {
-        return percentageRepository.findAllByDiplomWork(diplomWork);
+    public List<Percentage> findAllBySEC(SEC sec){
+        return percentageRepository.findAllBySec(sec);
     }
 
     @Override
-    public List<Percentage> findAllByDiplomWork(Integer id) {
-        return percentageRepository.findAllByDiplomWorkId(id);
+    public List<Percentage> findAllBySEC(Integer idSec) {
+        return percentageRepository.findAllBySecId(idSec);
     }
 
     @Override
@@ -42,8 +43,9 @@ public class PercentageServiceImpl implements PercentageService {
         percentage.setName(percentageForm.getName());
         percentage.setStartDate(percentageForm.getStartDate());
         percentage.setEndDate(percentageForm.getEndDate());
-        percentage.setDiplomWork(percentageForm.getDiplomWork());
-        percentage.setPercent(percentageForm.getPercent());
+        percentage.setSec(percentageForm.getSec());
+        percentage.setPlanPercent(percentageForm.getPlanPercent());
+        percentage.setFactPercent(percentageForm.getFactPercent());
         return percentageRepository.save(percentage);
     }
 
@@ -55,8 +57,9 @@ public class PercentageServiceImpl implements PercentageService {
         percentage.setName(percentageForm.getName());
         percentage.setStartDate(percentageForm.getStartDate());
         percentage.setEndDate(percentageForm.getEndDate());
-        percentage.setPercent(percentageForm.getPercent());
-        //percentage.setDiplomWork(percentageForm.getDiplomWork());
+        percentage.setPlanPercent(percentageForm.getPlanPercent());
+        percentage.setFactPercent(percentageForm.getFactPercent());
+        percentage.setSec(percentageForm.getSec());
         return percentageRepository.save(percentage);
     }
 

@@ -1,6 +1,7 @@
 package com.example.demo.entity.form;
 
 import com.example.demo.entity.DiplomWork;
+import com.example.demo.entity.sec.SEC;
 
 import java.util.Date;
 
@@ -20,9 +21,11 @@ public class PercentageForm {
 
     private Date endDate;
 
-    private Integer percent;
+    private Integer planPercent;
 
-    private DiplomWork diplomWork;
+    private Integer factPercent;
+
+    private SEC sec;
 
     public void setId(Integer id) {
         this.id = id;
@@ -60,19 +63,27 @@ public class PercentageForm {
         this.endDate = endDate;
     }
 
-    public Integer getPercent() {
-        return percent;
+    public Integer getPlanPercent() {
+        return planPercent;
     }
 
-    public void setPercent(Integer percent) {
-        this.percent = percent;
+    public void setPlanPercent(Integer planPercent) {
+        this.planPercent = planPercent;
     }
 
-    public DiplomWork getDiplomWork() {
-        return diplomWork;
+    public Integer getFactPercent() {
+        return factPercent;
     }
 
-    public void setDiplomWork(DiplomWork diplomWork) {
-        this.diplomWork = diplomWork;
+    public void setFactPercent(Integer factPercent) {
+        this.factPercent = factPercent;
+    }
+
+    public SEC getSec() {
+        return sec;
+    }
+
+    public void setSec(SEC sec) {
+        this.sec = sec;
     }
 }

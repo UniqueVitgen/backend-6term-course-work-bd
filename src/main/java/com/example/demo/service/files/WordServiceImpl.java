@@ -53,7 +53,7 @@ public class WordServiceImpl implements WordService {
             int columnNumber = 5;
             int writableWidthTwips = wordPackage.getDocumentModel()
                     .getSections().get(0).getPageDimensions().getWritableWidthTwips();
-            Tbl tbl = TblFactory.createTable(diplomWork.getPercentages().size() + 1, columnNumber, writableWidthTwips/columnNumber);
+            Tbl tbl = TblFactory.createTable(diplomWork.getStudent().getSecEvent().getSec().getPercentages().size() + 1, columnNumber, writableWidthTwips/columnNumber);
             List<Object> rows = tbl.getContent();
             ObjectFactory factory = Context.getWmlObjectFactory();
             addTitle(mainDocumentPart, diplomWork.getStudent());

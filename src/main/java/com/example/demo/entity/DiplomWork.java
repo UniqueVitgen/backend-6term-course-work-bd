@@ -51,14 +51,11 @@ public class DiplomWork {
     @JoinColumn(name = "`id_Teo_consultor`")
     private Lector teoConsultor;
 
-
-    @OneToMany(mappedBy = "diplomWork", cascade = CascadeType.ALL)
-    @OrderBy("startDate ASC")
-    private Set<Percentage> percentages;
-
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "`id_Status`")
     private Status status;
+
+    private Integer mark;
 
     public Integer getId() {
         return id;
@@ -132,19 +129,19 @@ public class DiplomWork {
         this.teoConsultor = teoConsultor;
     }
 
-    public Set<Percentage> getPercentages() {
-        return percentages;
-    }
-
-    public void setPercentages(Set<Percentage> percentages) {
-        this.percentages = percentages;
-    }
-
     public Status getStatus() {
         return status;
     }
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Integer getMark() {
+        return mark;
+    }
+
+    public void setMark(Integer mark) {
+        this.mark = mark;
     }
 }

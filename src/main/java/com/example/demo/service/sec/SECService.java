@@ -10,6 +10,8 @@ public interface SECService {
 
     SEC findById(Integer id);
 
+    SEC findByDiplom(Integer diplomId);
+
     SEC save(SEC sec);
 
     SEC edit(SEC sec);

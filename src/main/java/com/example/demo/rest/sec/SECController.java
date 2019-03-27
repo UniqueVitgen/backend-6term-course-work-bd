@@ -44,6 +44,11 @@ public class SECController {
         return secService.edit(sec);
     }
 
+    @GetMapping(value = "/find-by-diplom-{idDiplom}")
+    public SEC findByDiplom(@PathVariable("idDiplom") Integer idDiplom) {
+        return secService.findByDiplom(idDiplom);
+    }
+
     @RequestMapping(value = "/delete-{id}", method = RequestMethod.DELETE)
     ResponseEntity delete(@PathVariable("id") Integer id) {
         try {

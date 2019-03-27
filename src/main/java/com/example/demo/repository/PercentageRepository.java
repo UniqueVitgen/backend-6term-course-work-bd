@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import com.example.demo.entity.DiplomWork;
 import com.example.demo.entity.News;
 import com.example.demo.entity.Percentage;
+import com.example.demo.entity.sec.SEC;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -12,9 +13,9 @@ public interface PercentageRepository extends CrudRepository<Percentage, Integer
     @Override
     List<Percentage> findAll();
 
-    List<Percentage> findAllByDiplomWork(DiplomWork diplomWork);
+    List<Percentage> findAllBySec(SEC sec);
 
-    List<Percentage> findAllByDiplomWorkId(Integer id);
+    List<Percentage> findAllBySecId(Integer idSec);
 
     void delete(Percentage percentage);
 

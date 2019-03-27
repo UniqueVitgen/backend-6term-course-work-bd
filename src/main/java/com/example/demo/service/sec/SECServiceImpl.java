@@ -1,9 +1,12 @@
 package com.example.demo.service.sec;
 
+import com.example.demo.entity.DiplomWork;
 import com.example.demo.entity.Group;
 import com.example.demo.entity.sec.SEC;
+import com.example.demo.entity.sec.SECEvent;
 import com.example.demo.repository.GroupRepository;
 import com.example.demo.repository.sec.SECRepository;
+import com.example.demo.service.DiplomWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,9 @@ public class SECServiceImpl implements SECService {
     @Autowired
     private GroupRepository groupRepository;
 
+    @Autowired
+    private DiplomWorkService diplomWorkService;
+
     @Override
     public List<SEC> findAll() {
         return secRepository.findAll();
@@ -25,6 +31,17 @@ public class SECServiceImpl implements SECService {
     @Override
     public SEC findById(Integer id) {
         return secRepository.findById(id).get();
+    }
+
+    @Override
+    public SEC findByDiplom(Integer diplomId) {
+        DiplomWork diplomWork = diplomWorkService.findById(diplomId);
+        SECEvent secEvent = diplomWork.getStudent().getSecEvent();
+        if (secEvent != null) {
+            return secEvent.getSec();
+        } else {
+            return null;
+        }
     }
 
     @Override

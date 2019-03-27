@@ -32,7 +32,7 @@ public class Group {
     private Set<SEC> secs;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "groups",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "groups",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<SECEvent> secEvents;
 
 
@@ -48,7 +48,7 @@ public class Group {
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "group", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Student> students;
 
     public Group(String number) {

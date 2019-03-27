@@ -1,9 +1,6 @@
 package com.example.demo.entity.sec;
 
-import com.example.demo.entity.Department;
-import com.example.demo.entity.Group;
-import com.example.demo.entity.Specialization;
-import com.example.demo.entity.Student;
+import com.example.demo.entity.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,6 +29,10 @@ public class SEC {
 
     @OneToMany(mappedBy = "sec", cascade = CascadeType.ALL)
     private Set<SECEvent> events;
+
+    @OneToMany(mappedBy = "sec", cascade = CascadeType.ALL)
+    @OrderBy("startDate ASC")
+    private Set<Percentage> percentages;
 
     @OrderBy("priority ASC, fullname ASC")
     @ManyToMany(fetch = FetchType.EAGER)
@@ -128,5 +129,13 @@ public class SEC {
 
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
+    }
+
+    public Set<Percentage> getPercentages() {
+        return percentages;
+    }
+
+    public void setPercentages(Set<Percentage> percentages) {
+        this.percentages = percentages;
     }
 }

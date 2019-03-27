@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/group/**", "/title/**", "/degree/**", "/post/**", "/files/**", "/news/**",
                         "/organization/**", "/post-organization/**").permitAll()
                 .antMatchers("/lectors/*", "/diplom-work/**",
-                        "/percentage/**", "/status/**").hasAnyAuthority("LECTOR",
+                        "/percentage/**", "/status/**", "/sec/find-by-diplom-{idDiplom}").hasAnyAuthority("LECTOR",
                 "STUDENT", "ADMIN", "ORGANIZER", "SECRETARY_SEC")
                 .antMatchers("/sec/**", "/sec-event/**", "/sec-role/**", "/sec-user/**")
                 .hasAnyAuthority("SECRETARY_SEC", "ADMIN", "ORGANIZER")
