@@ -11,6 +11,7 @@ import java.util.Set;
 public class SECRole {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id_role")
     private Integer id;
 

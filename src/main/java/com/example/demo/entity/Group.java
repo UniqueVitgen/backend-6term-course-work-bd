@@ -8,12 +8,14 @@ import com.sun.deploy.panel.SpecialTreeListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "`group`")
 public class Group {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Group`")
     private Integer idGroup;
 
@@ -38,7 +40,7 @@ public class Group {
 
     @JsonIgnore
     @OneToMany(mappedBy = "group", cascade = CascadeType.MERGE)
-    private Set<Student> students;
+    private List<Student> students;
 
     public Group(String number) {
         this.number = number;
@@ -80,11 +82,11 @@ public class Group {
         this.specialization = specialization;
     }
 
-    public Set<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<Student> students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 

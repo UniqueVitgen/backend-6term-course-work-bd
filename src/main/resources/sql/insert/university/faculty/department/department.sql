@@ -1,0 +1,1 @@
+insert into diplom_work.department (name, short_name, id_Faculty) VALUES ('ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ВЫЧИСЛИТЕЛЬНОЙ ТЕХНИКИ', 'ПОВТ', 1)

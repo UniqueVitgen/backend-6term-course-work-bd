@@ -1,12 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Lector;
-import com.example.demo.entity.Role;
-import com.example.demo.entity.Student;
+import com.example.demo.entity.*;
 import com.example.demo.repository.LectorRepository;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -66,7 +63,7 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
     }
 
     @Override
-    public Lector saveLector(Lector lector) {
+    public Lector saveLectorUniversity(LectorUniversity lector) {
         User newUser = new User();
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.findByName("LECTOR"));
@@ -80,19 +77,39 @@ public class UserServiceImpl<T> implements UserService, UserDetailsService {
         //newUser = userRepository.save(newUser);
 
 
-        Lector newLector = new Lector();
+        LectorUniversity newLector = new LectorUniversity();
         newLector.setRoles(newUser.getRoles());
         newLector.setUsername(newUser.getUsername());
         newLector.setFirstname(newUser.getFirstname());
         newLector.setMiddlename(newUser.getMiddlename());
         newLector.setLastname(newUser.getLastname());
         newLector.setPassword(newUser.getPassword());
-
+        newLector.setDepartment(lector.getDepartment());
         newLector.setTitle(lector.getTitle());
         newLector.setPost(lector.getPost());
         newLector.setDegree(lector.getDegree());
+
         //newLector.setTitle(lector.getTitle());
-         return lectorRepository.save(newLector);
+        return lectorRepository.save(newLector);
+    }
+
+    @Override
+    public Lector saveLectorOrganizer(LectorOrganization lectorOrganization) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleService.findByName("LECTOR"));
+
+
+        LectorOrganization newLector = new LectorOrganization();
+        newLector.setRoles(roles);
+        newLector.setUsername(lectorOrganization.getUsername());
+        newLector.setFirstname(lectorOrganization.getFirstname());
+        newLector.setMiddlename(lectorOrganization.getMiddlename());
+        newLector.setLastname(lectorOrganization.getLastname());
+        newLector.setPassword(bcryptEncoder.encode(lectorOrganization.getPassword()));
+        newLector.setPostOrganization(lectorOrganization.getPostOrganization());
+        newLector.setOrganization(lectorOrganization.getOrganization());
+        //newLector.setTitle(lector.getTitle());
+        return lectorRepository.save(newLector);
     }
 
     @Override

@@ -8,7 +8,13 @@ public interface RoleService {
 
     Role findOne(Integer id);
 
+    Role save(Role role);
+
+    Role Edit(Role role);
+
     List<Role> findAll();
 
     Role findByName(String name);
+
+    void delete(Integer id);
 }

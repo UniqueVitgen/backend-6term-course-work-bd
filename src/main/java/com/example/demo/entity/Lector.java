@@ -12,23 +12,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "`lector`")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Lector extends User {
-
-
-  @NotNull
-  @ManyToOne(cascade = CascadeType.MERGE)
-  @JoinColumn(name = "`id_Title`")
-  private Title title;
-
-  @NotNull
-  @ManyToOne(cascade = CascadeType.MERGE)
-  @JoinColumn(name = "`id_Degree`")
-  private Degree degree;
-
-  @NotNull
-  @ManyToOne(cascade = CascadeType.MERGE)
-  @JoinColumn(name = "`id_Post`")
-  private Post post;
 
 
   @JsonIgnore
@@ -53,30 +38,6 @@ public class Lector extends User {
 
   public Lector() {
 
-  }
-
-  public Title getTitle() {
-    return title;
-  }
-
-  public void setTitle(Title title) {
-    this.title = title;
-  }
-
-  public Degree getDegree() {
-    return degree;
-  }
-
-  public void setDegree(Degree degree) {
-    this.degree = degree;
-  }
-
-  public Post getPost() {
-    return post;
-  }
-
-  public void setPost(Post post) {
-    this.post = post;
   }
 
   public Set<DiplomWork> getDiplomWorksLikeLeader() {

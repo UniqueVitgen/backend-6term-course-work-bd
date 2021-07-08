@@ -1,8 +1,6 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +11,7 @@ import java.util.Set;
 public class Specialization {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_Specialization`")
     private Integer idSpecialization;
 
@@ -30,8 +29,8 @@ public class Specialization {
     private String code;
 
     @ManyToOne
-    @JoinColumn(name = "`id_Faculty`")
-    private Faculty faculty;
+    @JoinColumn(name = "`id_Department`")
+    private Department department;
 
     @JsonIgnore
     @OneToMany(mappedBy = "specialization", cascade = CascadeType.ALL)
@@ -49,12 +48,12 @@ public class Specialization {
         this.idSpecialization = idSpecialization;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getName() {

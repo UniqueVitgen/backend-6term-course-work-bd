@@ -1,8 +1,6 @@
 package com.example.demo.rest;
 
-import com.example.demo.entity.User;
-import com.example.demo.entity.Lector;
-import com.example.demo.entity.Student;
+import com.example.demo.entity.*;
 import com.example.demo.service.LectorService;
 import com.example.demo.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -64,13 +62,23 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/lector", method = RequestMethod.POST, produces="application/json")
-    Lector SignUpLector(@RequestBody Lector lector) {
+    Lector SignUpLector(@RequestBody LectorUniversity lector) {
         System.out.println(lector);
         System.out.println("entered in stuedent 1 sign up");
         User user = userService.findByUsername(lector.getUsername());
         if(user != null) {
             return null;
         }
-        return userService.saveLector(lector);
+        return userService.saveLectorUniversity(lector);
+    }
+
+    @PostMapping(value ="/lector-organizer")
+    Lector SignUpLectorOrganizer(@RequestBody LectorOrganization lectorOrganization) {;
+        User user = userService.findByUsername(lectorOrganization.getUsername());
+        if(user != null) {
+            return null;
+        }
+        return userService.saveLectorOrganizer(lectorOrganization);
+
     }
 }

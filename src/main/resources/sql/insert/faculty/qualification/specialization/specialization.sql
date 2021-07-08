@@ -1,1 +1,0 @@
-insert into diplom_work.specialization (name, code, id_Qualification, id_faculty) VALUES ('Программное обеспечение информационных технологий', '1-40 01 01', 1,1)

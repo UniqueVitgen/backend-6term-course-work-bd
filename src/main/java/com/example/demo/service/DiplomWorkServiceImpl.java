@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class DiplomWorkServiceImpl implements DiplomWorkService{
@@ -31,8 +32,14 @@ public class DiplomWorkServiceImpl implements DiplomWorkService{
 
     @Override
     public DiplomWork save(DiplomWork diplomWork) {
-        Status status = statusService.findByName("Начало");
-        diplomWork.setStatus(status);
+        Status status;
+        try {
+            status = statusService.findById(1);
+            diplomWork.setStatus(status);
+        }
+        catch (NoSuchElementException e) {
+
+        }
         return diplomWorkRepository.save(diplomWork);
     }
 

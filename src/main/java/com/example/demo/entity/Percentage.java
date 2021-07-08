@@ -12,6 +12,7 @@ import java.util.Set;
 public class Percentage {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="`id_Percentage`")
     private Integer id;
 

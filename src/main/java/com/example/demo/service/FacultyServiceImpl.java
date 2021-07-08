@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Faculty;
+import com.example.demo.entity.University;
 import com.example.demo.repository.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ public class FacultyServiceImpl implements FacultyService {
     @Autowired
     private FacultyRepository facultyRepository;
 
+    @Autowired
+    private UniversityService universityService;
+
     @Override
     public Faculty findByName(String name) {
         return facultyRepository.findByName(name);
@@ -20,6 +24,17 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public List<Faculty> findAll() {
         return facultyRepository.findAll();
+    }
+
+    @Override
+    public List<Faculty> findAllByUniversity(University university) {
+        return facultyRepository.findByUniversity(university);
+    }
+
+    @Override
+    public List<Faculty> findAllByUniversityId(Integer id) {
+        University university = universityService.get(id);
+        return findAllByUniversity(university);
     }
 
     @Override

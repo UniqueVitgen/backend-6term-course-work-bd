@@ -15,7 +15,7 @@ import java.util.Set;
 public class SEC {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id_sec`")
     private Integer id;
 

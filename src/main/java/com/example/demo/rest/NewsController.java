@@ -8,6 +8,7 @@ import com.example.demo.service.NewsService;
 import com.example.demo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class NewsController {
 
     @CrossOrigin(origins = {"http://localhost:4200"})
     @RequestMapping(value = "/news-{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public @ResponseBody
     News diplomWork(@PathVariable("id") Integer id) {
         return newsService.findById(id);

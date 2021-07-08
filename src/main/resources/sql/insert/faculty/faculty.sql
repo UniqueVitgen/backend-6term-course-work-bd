@@ -1,1 +1,0 @@
-insert into diplom_work.faculty (name, short_name) VALUES ('ФАКУЛЬТЕТ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ И РОБОТОТЕХНИКИ', 'ФИТР')
